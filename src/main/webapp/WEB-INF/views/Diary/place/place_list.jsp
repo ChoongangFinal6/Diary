@@ -7,18 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
-<script type="text/javascript">
-	location.href="DiaryWrite.html";
-</script>
+	place_list.jsp
 </body>
 </html>
-=======
-<%
-	 response.sendRedirect("placeInsertForm.html");
-	//response.sendRedirect("listEmp.do");
-	//response.sendRedirect("insertDummy.do");
-%>
-</body>
-</html>
->>>>>>> woojin
