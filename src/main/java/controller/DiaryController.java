@@ -6,9 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DiaryController {
 	
+	@RequestMapping(value="DiaryContent")
+	public String DiaryContent(){
+		
+		return "Diary/Diarycontent";
+	}
 	@RequestMapping(value="DiaryWrite")
 	public String DiaryWrite(){
-		System.out.println("나오나");
-		return "Diary";
+		
+		return "Diary/DiaryWrite";
 	}
+		
+	
 }

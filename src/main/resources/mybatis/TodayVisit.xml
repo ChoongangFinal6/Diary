@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="TodayVisit">
+	<resultMap type="TodayVisit" id="TodayVisitResult">
+		<result property="Dno" column="Dno"/>
+		<result property="Mno" column="Mno"/>
+		<result property="Pcode" column="Pcode"/>
+		<result property="Tno" column="Tno"/>
+		<result property="Twork" column="Twork"/>
+		<result property="Ttime" column="Ttime"/>
+	</resultMap>
+	<select id="PlaceList" parameterType="int" resultMap="TodayVisitResult">
+		select * from TodayVisit where Dno=#{Dno}
+	</select>
+</mapper>
