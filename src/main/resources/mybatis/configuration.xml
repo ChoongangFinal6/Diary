@@ -3,7 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-<<<<<<< HEAD
 		<typeAlias alias="Place" type="model.Place" />
 		<typeAlias alias="TodayVisit" type="model.TodayVisit" />
 	</typeAliases>
@@ -11,13 +10,7 @@
 	<mappers>
 		<mapper resource="mybatis/Place.xml" />
 		<mapper resource="mybatis/TodayVisit.xml" />
-=======
-		<typeAlias alias="ToDo" type="model.ToDo" />
-	</typeAliases>
-
-	<mappers>
-		<mapper resource="mybatis/ToDo.xml" />
->>>>>>> woojin
 	</mappers>
+
 </configuration>
 
