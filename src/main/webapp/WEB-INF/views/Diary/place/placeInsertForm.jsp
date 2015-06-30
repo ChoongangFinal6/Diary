@@ -91,11 +91,11 @@
 			대분류 
 			<select id="pTypeCat1" name="pTypeCat1" required="required">
 				<option value="">선택</option>
-				<option value="01">교통시설</option>
+				<option value="01">교통</option>
 				<option value="02">카페</option>
 				<option value="03">병원,의료</option>
 				<option value="04">관공서</option>
-				<option value="05">마트,슈퍼</option>
+				<option value="05">쇼핑,마트</option>
 				<option value="06">생활,편의</option>
 				<option value="07">스포츠시설</option>
 				<option value="08">음식점</option>
