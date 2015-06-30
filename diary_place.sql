@@ -93,7 +93,7 @@ INSERT INTO place_Category values('09', '숙박'	, '05', '게스트하우스');
 INSERT INTO place_Category values('09', '숙박'	, '06', '캠핑');
 INSERT INTO place_Category values('09', '숙박'	, '00', '기타');
 
-INSERT INTO place_Category values('10', '문화'	, '01', '영화');	-- 11 문화
+INSERT INTO place_Category values('10', '문화'	, '01', '영화');	
 INSERT INTO place_Category values('10', '문화'	, '02', '공연');
 INSERT INTO place_Category values('10', '문화'	, '03', '미술관');
 INSERT INTO place_Category values('10', '문화'	, '04', '박물관');

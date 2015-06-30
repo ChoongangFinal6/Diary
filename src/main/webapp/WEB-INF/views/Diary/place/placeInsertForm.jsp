@@ -100,9 +100,8 @@
 				<option value="07">스포츠시설</option>
 				<option value="08">음식점</option>
 				<option value="09">숙박</option>
-				<option value="10">은행</option>
-				<option value="11">문화</option>
-				<option value="12">관광</option>
+				<option value="10">문화</option>
+				<option value="11">관광</option>
 				<option value="00">기타</option>
 			</select>
 			소분류 
