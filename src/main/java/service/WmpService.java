@@ -13,4 +13,7 @@ public interface WmpService {
 	public Place searchPlaceOne(String pName);
 	public int visitInsert(TodayVisit todayVisit);
 
+	// Diary_Place
+	List<Place> getPlaceSubCat2(String ptypeCat1);
+	int insertPlace(Place pDto);
 }
