@@ -52,9 +52,15 @@ INSERT INTO place_Category values('03', '병원,의료', '04', '한의원');
 INSERT INTO place_Category values('03', '병원,의료', '05', '약국');
 INSERT INTO place_Category values('03', '병원,의료', '00', '기타');
 
-INSERT INTO place_Category values('04', '관공서'	, '01', '주민센터');
-INSERT INTO place_Category values('04', '관공서'	, '02', '시청,구청');
-INSERT INTO place_Category values('04', '관공서'	, '00', '기타');
+INSERT INTO place_Category values('04', '교육,관공서', '01', '주민센터');
+INSERT INTO place_Category values('04', '교육,관공서', '02', '시청,구청');
+INSERT INTO place_Category values('04', '교육,관공서', '03', '대학교');
+INSERT INTO place_Category values('04', '교육,관공서', '04', '고등학교');
+INSERT INTO place_Category values('04', '교육,관공서', '05', '중학교');
+INSERT INTO place_Category values('04', '교육,관공서', '06', '초등학교');
+INSERT INTO place_Category values('04', '교육,관공서', '07', '유치원,어린이집');
+INSERT INTO place_Category values('04', '교육,관공서', '08', '학원');
+INSERT INTO place_Category values('04', '교육,관공서', '00', '기타');
 
 INSERT INTO place_Category values('05', '쇼핑,마트', '01', '백화점');
 INSERT INTO place_Category values('05', '쇼핑,마트', '02', '대형마트');
@@ -68,10 +74,10 @@ INSERT INTO place_Category values('06', '생활,편의', '01', '주차장');
 INSERT INTO place_Category values('06', '생활,편의', '02', '꽃집');
 INSERT INTO place_Category values('06', '생활,편의', '00', '기타');
 
-INSERT INTO place_Category values('07', '스포츠시설', '01', '헬스');
-INSERT INTO place_Category values('07', '스포츠시설', '02', '경기장');
-INSERT INTO place_Category values('07', '스포츠시설', '03', '골프장');
-INSERT INTO place_Category values('07', '스포츠시설', '00', '기타');
+INSERT INTO place_Category values('07', '스포츠,레져', '01', '헬스');
+INSERT INTO place_Category values('07', '스포츠,레져', '02', '경기장');
+INSERT INTO place_Category values('07', '스포츠,레져', '03', '골프장');
+INSERT INTO place_Category values('07', '스포츠,레져', '00', '기타');
 
 INSERT INTO place_Category values('08', '음식점'	, '01', '한식');
 INSERT INTO place_Category values('08', '음식점'	, '02', '일식');
