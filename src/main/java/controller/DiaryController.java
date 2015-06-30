@@ -80,7 +80,12 @@ public class DiaryController {
 		int mNo = Integer.parseInt(req.getParameter("mNo"));;
 		int pCode = Integer.parseInt(req.getParameter("pCode"));
 		String tWork = req.getParameter("tWork");
-		String tTime = req.getParameter("tTime");
+		String time1 = req.getParameter("time1");
+		String time2 = req.getParameter("time2");
+		
+		String tTime = time1 + "~" + time2;
+		
+		System.out.println("타임 : " + tTime);
 		
 		//INSERT INTO TodayVisit values (2, 1, 5, 1, '공부하러 감', '09:00~18:00');
 		
@@ -106,7 +111,11 @@ public class DiaryController {
 		return "Diary/DiaryMain";
 	}
 	@RequestMapping(value="insertVisitView")
-	public String insertVisitView(){
+	public String insertVisitView(int dNo, int mNo, int pCode, Model model){
+		model.addAttribute("dNo", dNo);
+		model.addAttribute("pCode", pCode);
+		model.addAttribute("mNo", mNo);
+		
 		return "Diary/insertVisitView";
 	}
 	
