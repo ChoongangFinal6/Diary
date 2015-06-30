@@ -12,9 +12,10 @@ public class foodDaoImpl implements foodDao {
     @Autowired
     private SqlSession session;
     
+    //메뉴 중간 분류
 	public List<Menu> fmenu(int typeCode) {
-		
-		return session.selectList("mSelect", typeCode);
+	/*	System.out.println("DAO  fmenu : " + typeCode);*/
+		return session.selectList("Menu.mSelect", typeCode); 
 	}
 
 }

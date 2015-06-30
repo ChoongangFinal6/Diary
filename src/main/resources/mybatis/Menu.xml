@@ -10,6 +10,9 @@
 			</resultMap>
 
 	<select id="mSelect" parameterType="int" resultMap="MenuResult">
-		select foodkind from Menu where typeCode=#{typeCode}
+		select * from Menu where typeCode=#{typeCode}
 	</select> 
+	<select id="ccc" resultType="int">
+		select count(*) from Menu
+	</select>
 </mapper>

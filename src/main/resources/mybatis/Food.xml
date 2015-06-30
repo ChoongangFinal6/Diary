@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Place">
-	<resultMap type="Place" id="PlaceResult">
-		<result property="pCode" column="pCode"/>
-		<result property="pType" column="pType"/>
-		<result property="pName" column="pName"/>
-		<result property="pImg" column="pImg"/>
-		<result property="pMapX" column="pMapX"/>
-		<result property="pMapY" column="pMapY"/>
+<mapper namespace="Food">
+	<resultMap type="Food" id="FoodResult">
+		<result property="typeCode" column="typeCode"/>
+		<result property="kindCode" column="kindCode"/>
+		<result property="foodCode" column="foodCode"/>
+		<result property="foodName" column="foodName"/>
+		<result property="foodImage" column="foodImage"/>
+		<result property="kcal" column="kcal"/>
+		<result property="amount" column="amount"/>
+		<result property="gram" column="gram"/>
 	</resultMap>
-	<select id="PlaceList" parameterType="int" resultMap="PlaceResult">
-		select * from Place where pCode=#{pCode}
+
+	<select id="foodcode" parameterType="FoodResult" resultMap="int">
+		select nvl(max(foodcode),0 ) from Food where typeCode=#{typeCode} and kindCode=#{kindCode}
 	</select> 
 </mapper>

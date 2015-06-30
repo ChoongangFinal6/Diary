@@ -5,11 +5,13 @@
 	<typeAliases>
 		<typeAlias alias="Place" type="model.Place" />
 		<typeAlias alias="TodayVisit" type="model.TodayVisit" />
+		<typeAlias alias="Menu" type="model.Menu" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mybatis/Place.xml" />
 		<mapper resource="mybatis/TodayVisit.xml" />
+		<mapper resource="mybatis/Menu.xml" />
 	</mappers>
 
 </configuration>
