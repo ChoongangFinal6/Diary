@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import model.Place;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,23 +21,19 @@ public class PlaceDaoImpl implements PlaceDao {
 
 	// 새 장소 등록
 	public int placeInsert(Place place) {
-		System.out.println("    Dao: placeInsert");
+		System.out.println("Dao: placeInsert");
 		return session.insert("Place.insertPlace", place);
 	}
 	
 
-<<<<<<< HEAD
 	public Place placeOne(int pcode){
 		Place place = session.selectOne("PlaceList", pcode); 
 		return place;
 	}
 
 
-	@Override
 	public Place searchPlaceOne(String pName) {
 		Place searchPlaceOne = session.selectOne("searchPlace", pName);
 		return searchPlaceOne;
 	}
-=======
->>>>>>> ecc13185c2fb306db1d57277a1a24a2a2c60f7c7
 }
