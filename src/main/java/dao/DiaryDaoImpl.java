@@ -2,7 +2,6 @@ package dao;
 
 import java.util.List;
 
-import model.Place;
 import model.TodayVisit;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,12 +13,12 @@ public class DiaryDaoImpl implements DiaryDao{
 	@Autowired
 	private SqlSession session;
 	
-	public List<Place> placeList(){
-		
-		return null;
-	}
-	public TodayVisit todayVisit(int Dno) {
-		TodayVisit todayVisit = session.selectOne("", Dno);
+	public List<TodayVisit> todayVisitList(int dno) {
+		List<TodayVisit> todayVisit = session.selectList("DiaryTodayOne", dno);
 		return todayVisit;
+	}
+	public int visitInsert(TodayVisit todayVisit) {
+		int visitToday = session.insert("visitInsert", todayVisit);
+		return visitToday;
 	}
 }

@@ -1,47 +1,49 @@
 package model;
 
 public class TodayVisit {
-	private int dno;
-	private int mno;
-	private int pcode;
-	private int tno;
-	private String twork;
-	private String ttime;
-	public int getDno() {
-		return dno;
+	private int dNo;
+	private int mNo;
+	private int pCode;
+	private int tNo;
+	private String tWork;
+	private String tTime;
+	
+	
+	public int getdNo() {
+		return dNo;
 	}
-	public void setDno(int dno) {
-		this.dno = dno;
+	public void setdNo(int dNo) {
+		this.dNo = dNo;
 	}
-	public int getMno() {
-		return mno;
+	public int getmNo() {
+		return mNo;
 	}
-	public void setMno(int mno) {
-		this.mno = mno;
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
 	}
-	public int getPcode() {
-		return pcode;
+	public int getpCode() {
+		return pCode;
 	}
-	public void setPcode(int pcode) {
-		this.pcode = pcode;
+	public void setpCode(int pCode) {
+		this.pCode = pCode;
 	}
-	public int getTno() {
-		return tno;
+	public int gettNo() {
+		return tNo;
 	}
-	public void setTno(int tno) {
-		this.tno = tno;
+	public void settNo(int tNo) {
+		this.tNo = tNo;
 	}
-	public String getTwork() {
-		return twork;
+	public String gettWork() {
+		return tWork;
 	}
-	public void setTwork(String twork) {
-		this.twork = twork;
+	public void settWork(String tWork) {
+		this.tWork = tWork;
 	}
-	public String getTtime() {
-		return ttime;
+	public String gettTime() {
+		return tTime;
 	}
-	public void setTtime(String ttime) {
-		this.ttime = ttime;
+	public void settTime(String tTime) {
+		this.tTime = tTime;
 	}
 	
 }

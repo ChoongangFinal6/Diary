@@ -12,5 +12,8 @@
 	</resultMap>
 	<select id="PlaceList" parameterType="int" resultMap="PlaceResult">
 		select * from Place where pCode=#{pCode}
-	</select> 
+	</select>
+	<select id="searchPlace" parameterType="String" resultMap="PlaceResult">
+		select * from Place where pName=#{pName}
+	</select>
 </mapper>

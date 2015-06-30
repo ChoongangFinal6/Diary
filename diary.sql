@@ -15,9 +15,9 @@ delete from place;
 
 CREATE SEQUENCE pcode_seq START WITH 1 INCREMENT BY 1;
 
-INSERT INTO place values (pcode_seq.nextval, '학교', '서울역삼초등학교', 'image1.jpg', 127.03098542194168, 37.49725576460605);
-INSERT INTO place values (pcode_seq.nextval, '학원', '중앙정보처리학원', 'image2.jpg', 127.02845219806613, 37.49696807978383);
-INSERT INTO place values (pcode_seq.nextval, '역', '양재역', 'image3.jpg', 127.03464361459156, 37.48474876494686);
+INSERT INTO place values (pcode_seq.nextval, '학교', '서울역삼초등학교', 'image1.jpg', 37.49725576460605, 127.03098542194168);
+INSERT INTO place values (pcode_seq.nextval, '학원', '중앙정보처리학원', 'image2.jpg', 37.49696807978383, 127.02845219806613);
+INSERT INTO place values (pcode_seq.nextval, '역', '양재역', 'image3.jpg', 37.48474876494686, 127.03464361459156);
 DROP SEQUENCE pcode_seq;
 SELECT * from pcode_seq;
 
@@ -36,7 +36,7 @@ CREATE TABLE TodayVisit(
 	)
 )
 
-select * from TODAYVISIT;
+select * from TODAYVISIT order by pcode;
 
 INSERT INTO TodayVisit values (2, 1, 5, 1, '공부하러 감', '09:00~18:00');
 INSERT INTO TodayVisit values (2, 1, 6, 2, '친구 기다림', '18:30~19:00');

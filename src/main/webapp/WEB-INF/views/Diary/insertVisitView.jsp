@@ -7,11 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id="div"></div>
-<%
-	response.sendRedirect("DiaryMain.html");
-	//response.sendRedirect("listEmp.do");
-	//response.sendRedirect("insertDummy.do");
-%>
+입력창
 </body>
 </html>
