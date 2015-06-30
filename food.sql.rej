@@ -1,16 +1,8 @@
-diff a/food.sql b/food.sql	(rejected hunks)
-@@ -1,24 +1,51 @@
+
+
  create table food(
--foodCode number(10) not null primary key,
--typeCode number(10) not null,
--kindCode number(10) not null,
--foodName varchar2(10) not null,
--foodImage varchar2(10)not null,
--kcal number(10) not null,
--amount varchar2(10) not null,
--gram number(10) not null
-+foodCode number(10) not null primary key, -- 음식코드
-+typeCode number(10) not null, --타입코드
+foodCode number(10) not null primary key, -- 음식코드
+typeCode number(10) not null, --타입코드
 +kindCode number(10) not null, --종류코드
 +foodName varchar2(10) not null, --음식이름
 +foodImage varchar2(10)not null, --음식 이미지
@@ -23,10 +15,6 @@ diff a/food.sql b/food.sql	(rejected hunks)
  select * from food; 
  
  create table menu(
--foodType varchar2(10) not null,
--typeCode number(10) not null,
--foodKind varchar2(10)not null,
--kindCode varchar2(10)not null,
 +foodType varchar2(10) not null, --음식타입
 +typeCode number(10) not null, --타입코드
 +foodKind varchar2(10)not null, --음식종류
