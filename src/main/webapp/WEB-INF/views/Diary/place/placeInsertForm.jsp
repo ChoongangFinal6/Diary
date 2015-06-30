@@ -56,15 +56,15 @@
 
 	// 소분유 조회 ajax
 	$(function() {
-		$('#ptypeCat1').change(function() {
-			var param = 'ptypeCat1=' + $(this).val();
+		$('#pTypeCat1').change(function() {
+			var param = 'pTypeCat1=' + $(this).val();
 			// 세팅한 후에
 			$.ajaxSetup({
 				type : 'get',
-				url : 'getPtypeCat2.html',
+				url : 'getPTypeCat2.html',
 				dataType : 'text',
 				success : function(result) {
-					$('#ptypeCat2').append(result);
+					$('#pTypeCat2').html(result);
 				}
 			});
 			// 요청 전송
@@ -76,8 +76,8 @@
 <body>
 	<div id="map"
 		style="width: 500px; height: 400px; float: left; margin-right: 30px;"></div>
-
-	<form action="abcd.jsp" method="post" enctype="multipart/form-data"
+		
+	<form action="diaryPlaceInsert.html" method="post" enctype="multipart/form-data"
 		onsubmit="return check()">
 		<input type="hidden" id="pmapx" name="pmapx" value=""> <input
 			type="hidden" id="pmapy" name="pmapy" value="">
@@ -89,33 +89,30 @@
 
 		<div id="type">
 			대분류 
-			<select id="ptypeCat1" name="ptypeCat1" required="required">
+			<select id="pTypeCat1" name="pTypeCat1" required="required">
 				<option value="">선택</option>
 				<option value="01">교통시설</option>
 				<option value="02">카페</option>
 				<option value="03">병원,의료</option>
-				<option value="04">주차장</option>
+				<option value="04">관공서</option>
 				<option value="05">마트,슈퍼</option>
 				<option value="06">생활,편의</option>
 				<option value="07">스포츠시설</option>
 				<option value="08">음식점</option>
 				<option value="09">숙박</option>
 				<option value="10">은행</option>
-				<option value="11">주유소</option>
-				<option value="12">편의점</option>
-				<option value="13">영화.공연</option>
-				<option value="14">관공서</option>
-				<option value="15">기타</option>
+				<option value="11">문화</option>
+				<option value="12">관광</option>
+				<option value="00">기타</option>
 			</select>
 			소분류 
-			<select id="ptypeCat2" name="ptypeCat2" required="required">
-				<option value="">선택</option>
+			<select id="pTypeCat2" name="pTypeCat2" required="required">
+				
 			</select>
 		</div>
 
 		<div id="img">
-			<input type="file" id="pimg" name="pimg" required="required"
-				accept="image/*">
+			<input type="file" id="pimg" name="pimg" required="required" accept="image/*">
 		</div>
 
 		<input type="submit" value="전송" />

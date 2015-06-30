@@ -14,12 +14,16 @@ public class PlaceDaoImpl implements PlaceDao {
 	@Autowired
 	private SqlSession session;
 
-	@Override
-	public List<Place> getPlaceSubCat2(String ptypeCat1) {
-		System.out.println("    PlaceDao, getPlaceSubCat2 :" + ptypeCat1);
-		String pCat1Code = ptypeCat1;
+	// 소분류 지역코드 조회
+	public List<Place> getPlaceSubCat2(String pCat1Code) {
 		return  session.selectList("Place.getSubCat2", pCat1Code);
 	}
+
+	// 새 장소 등록
+	public int placeInsert(Place place) {
+		System.out.println("    Dao: placeInsert");
+		return session.insert("Place.insertPlace", place);
+	}
 	
-	
+
 }

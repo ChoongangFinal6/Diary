@@ -7,5 +7,7 @@ import model.Place;
 
 public interface WmpService {
 
-	List<Place> getPlaceSubCat2(String ptypeCat1);		
+	// Diary_Place
+	List<Place> getPlaceSubCat2(String ptypeCat1);
+	int insertPlace(Place pDto);
 }

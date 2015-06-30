@@ -15,10 +15,16 @@
 	</resultMap>
 	
 	<select id="PlaceList" parameterType="int" resultMap="PlaceResult">
-		select * from Place where pCode=#{pCode}
+		select * from place where pCode=#{pCode}
+	</select> 
+
+<!-- 세부 분류코드 -->	
+	<select id="getSubCat2" parameterType="String" resultMap="PlaceResult">
+		SELECT pCat2Code, pCat2Name FROM place_Category WHERE pCat1Code=#{pCat1Code}
 	</select> 
 	
-	<select id="getSubCat2" parameterType="String" resultMap="PlaceResult">
-		select pCat2Code, pCat2Name from place_Category where pCat1Code=#{pCat1Code}
-	</select> 
+<!-- 새 장소 등록  -->	
+	<insert id="insertPlace" parameterType="Place">
+		INSERT INTO place VALUES (pcode_seq.nextval, #{pType}, #{pName}, #{pImg}, #{pMapX}, #{pMapY})
+	</insert>
 </mapper>

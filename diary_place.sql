@@ -37,11 +37,12 @@ INSERT INTO place_Category values('09', '숙박'		, '01', '호텔');
 INSERT INTO place_Category values('10', '은행'		, '01', '은행');
 INSERT INTO place_Category values('11', '문화'		, '01', '영화');	-- 11 문화
 INSERT INTO place_Category values('11', '문화'		, '02', '연극');
-INSERT INTO place_Category values('12', '기타'		, '01', '기타');
+INSERT INTO place_Category values('12', '관광'		, '02', '연극');
+INSERT INTO place_Category values('00', '기타'		, '00', '기타');
 
 SELECT * FROM place_Category;
 DROP TABLE place_Category;
-
+DELETE FROM place_Category
 select pCat2Code, pCat2Name from place_Category where pCat1Code='11'
 
 
