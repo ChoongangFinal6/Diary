@@ -2,9 +2,13 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import model.Place;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,20 +41,17 @@ public class PlaceController {
 	@RequestMapping(value="getPtypeCat2")
 	public String getSubCat2(String ptypeCat1, Model model, HttpServletRequest req, HttpServletResponse rep)
 			throws IOException {
-		System.out.println("getPtypeCat2 of " + ptypeCat1);
-		ws.getPlaceSubCat2(ptypeCat1);
-/*		String str = "{\"pdto\" : [";
-		str += "{\"pcode\" : " + pdto.getPcode() + ", ";
-		str += "\"ptype\" : \"" + pdto.getPtype() + "\", ";
-		str += "\"pname\" : \"" + pdto.getPname() + "\", ";
-		str += "\"pimg\" : \"" + pdto.getPimg() + "\", ";
-		str += "\"pmapx\" : \"" + pdto.getPmapx() + "\", ";
-		str += "\"pmapy\" : \"" + pdto.getPmapy() + "\"}";
-	str += "]}";*/
+		System.out.println("Ctrl : getPtypeCat2");
+		List<Place> cat2List = ws.getPlaceSubCat2(ptypeCat1);
+		String optionList ="";
+		
+		for(Place place : cat2List){
+			optionList += "<option value='"+place.getpCat2Code()+"'>"+place.getpCat2Name()+"</option>\n";
+		}
 		
 		rep.setContentType("text/html; charset=utf-8");
 		PrintWriter out = rep.getWriter();		
-//		out.print(str);
+		out.print(optionList);
 		
 		return null;
 	}

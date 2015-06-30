@@ -63,8 +63,8 @@
 				type : 'get',
 				url : 'getPtypeCat2.html',
 				dataType : 'text',
-				success : function(msg) {
-					$('#msg').html(msg);
+				success : function(result) {
+					$('#ptypeCat2').append(result);
 				}
 			});
 			// 요청 전송

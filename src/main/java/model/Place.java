@@ -8,7 +8,23 @@ public class Place {
 	String pImg; // 장소 이미지
 	Double pMapX; // x좌표
 	Double pMapY; // y좌표
-
+	
+	// mybatis 파라미터용 변수
+	String pCat2Code;
+	String pCat2Name;
+	
+	public String getpCat2Code() {
+		return pCat2Code;
+	}
+	public void setpCat2Code(String pCat2Code) {
+		this.pCat2Code = pCat2Code;
+	}
+	public String getpCat2Name() {
+		return pCat2Name;
+	}
+	public void setpCat2Name(String pCat2Name) {
+		this.pCat2Name = pCat2Name;
+	}
 	public int getpCode() {
 		return pCode;
 	}

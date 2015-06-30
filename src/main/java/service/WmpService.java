@@ -1,7 +1,11 @@
 package service;
 
+import java.util.List;
+import java.util.Map;
+
+import model.Place;
+
 public interface WmpService {
 
-	void getPlaceSubCat2(String ptypeCat1);		// 장소 소분류 조회
-	페ㅐㅇ
+	List<Place> getPlaceSubCat2(String ptypeCat1);		
 }

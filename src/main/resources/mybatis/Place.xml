@@ -9,8 +9,16 @@
 		<result property="pImg" column="pImg"/>
 		<result property="pMapX" column="pMapX"/>
 		<result property="pMapY" column="pMapY"/>
+		
+		<result property="pCat2Code" column="pCat2Code"/>
+		<result property="pCat2Name" column="pCat2Name"/>
 	</resultMap>
+	
 	<select id="PlaceList" parameterType="int" resultMap="PlaceResult">
 		select * from Place where pCode=#{pCode}
+	</select> 
+	
+	<select id="getSubCat2" parameterType="String" resultMap="PlaceResult">
+		select pCat2Code, pCat2Name from place_Category where pCat1Code=#{pCat1Code}
 	</select> 
 </mapper>
