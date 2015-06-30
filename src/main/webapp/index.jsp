@@ -7,11 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<%
-	response.sendRedirect("placeInsertForm.html");
-	//response.sendRedirect("listEmp.do");
-	//response.sendRedirect("insertDummy.do");
-%>
+<script type="text/javascript">
+	location.href="FoodWrite.html";
+</script>
 </body>
 </html>
