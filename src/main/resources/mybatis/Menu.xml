@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Menu">
+	<resultMap type="Menu" id="MenuResult">
+		<result property="foodType" column="foodType"/>
+		<result property="typeCode" column="typeCode"/>
+		<result property="foodKind" column="foodKind"/>
+		<result property="kindCode" column="kindCode"/>
+			</resultMap>
+
+	<select id="mSelect" parameterType="int" resultMap="MenuResult">
+		select foodkind from Menu where typeCode=#{typeCode}
+	</select> 
+</mapper>
