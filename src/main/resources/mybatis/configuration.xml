@@ -11,5 +11,6 @@
 		<mapper resource="mybatis/Place.xml" />
 		<mapper resource="mybatis/TodayVisit.xml" />
 	</mappers>
+
 </configuration>
 
