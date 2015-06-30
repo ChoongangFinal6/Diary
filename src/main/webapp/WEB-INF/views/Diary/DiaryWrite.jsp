@@ -61,7 +61,7 @@
 					iwContent = '<div style="padding:15px;">'+pname+
 						'<br><input type="text" id="tWork" placeholder="한일"/><br>'+
 						'<input type="text" id="tTime" placeholder="시간"/><br>'
-						+'<input type="button" class="insertVisitBtn" value="확인"><div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+						+'<input type="button" id="insertVisitBtn" value="확인"><div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 					    iwPosition = new daum.maps.LatLng(pmapx, pmapy); //인포윈도우 표시 위치입니다
 					
 					// 인포윈도우를 생성합니다
@@ -76,7 +76,7 @@
 					// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
 					infowindow.open(map, marker);
 					
-					$('.insertVisitBtn').click(function(){
+					$('#insertVisitBtn').click(function(){
 						var params = "dNo=" + $('#dNo').val() + "&mNo=" + $('#mNo').val();
 							params += "&pCode=" + $('#pCode').val() + "&tWork=" + $('#tWork').val();
 							params += "&tTime=" +$('#tTime').val();
