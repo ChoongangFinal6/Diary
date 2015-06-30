@@ -18,7 +18,7 @@
 		var map = new daum.maps.Map(mapContainer, mapOption);
 		var iwContent = "";
 		var marker = new daum.maps.Marker;
-		var infowindow = new daum.maps.InfoWindow;
+		var infowindow = new daum.maps.InfoWindow;		
 		
 		$('#searchPlaceBtn').click(function(){
 			marker.setMap(null);
@@ -95,9 +95,17 @@
 						});
 					}); */
 				});
-			}).error(function() { alert("존재하지않는 장소입니다"); });			
+			}).error( function() { 
+				if(confirm("등록되지 않은 장소입니다. 새로 추가하시겠습니까?")){ addNewPlace(); }
+			});			
 		});
+		
+		
 	});
+	
+	function addNewPlace(){
+		
+	}
 </script>
 </head>
 <body>
@@ -118,7 +126,6 @@
 		<div id="map" style="margin-top:50px; width: 500px; height: 360px; margin-right: 30px;">
 			<input type="text" id="searchPlace" style="position: absolute; z-index: 2; width: 120px;">
 			<input type="button" id="searchPlaceBtn" value="검색" style="position: absolute; z-index: 2; left: 123px;">
-			<input type="button" id="insertPlaceBtn" value="장소 등록" style="position: absolute; z-index: 2; left: 165px;">
 		</div>
 		<div>
 	 		내용<br>

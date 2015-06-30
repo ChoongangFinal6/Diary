@@ -48,9 +48,13 @@ DROP SEQUENCE dno_seq;
 delete TODAYVISIT;
 drop table todayvisit;
 
-CREATE TABLE place_Category {
-	pCat1Name VARCHAR2(20),
-	pCat1Code VARCHAR2(4),
-	pCat2Name VARCHAR2(20),
-	pCat2Code VARCHAR2(4)
-}
+INSERT INTO place values (5, '0403', '서울역삼초등학교', 'image1.jpg', 37.49725576460605, 127.03098542194168);
+INSERT INTO place values (6, '0409', '중앙정보처리학원', 'image2.jpg', 37.49696807978383, 127.02845219806613);
+INSERT INTO place values (7, '0101', '양재역', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO TodayVisit values (2, 93371, 5, 1, '공부하러 감', '09:00~18:00');
+INSERT INTO TodayVisit values (2, 93371, 6, 2, '친구 기다림', '18:30~19:00');
+INSERT INTO TodayVisit values (2, 93371, 7, 3, '집으로 가기 위해 역으로 감', '19:00~20:00');
+
+
+
+
