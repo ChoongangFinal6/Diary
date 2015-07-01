@@ -1,14 +1,15 @@
 package model;
 
-public class food {
+public class Food {
     private int foodCode;
     private int typeCode;
     private int kindCode;
     private String foodName;
     private String foodImage;
     private int kcal;
-    private String gram;
+    private int gram;
     private String amount;
+    
 	public int getFoodCode() {
 		return foodCode;
 	}
@@ -45,10 +46,10 @@ public class food {
 	public void setKcal(int kcal) {
 		this.kcal = kcal;
 	}
-	public String getGram() {
+	public int getGram() {
 		return gram;
 	}
-	public void setGram(String gram) {
+	public void setGram(int gram) {
 		this.gram = gram;
 	}
 	public String getAmount() {
@@ -57,9 +58,26 @@ public class food {
 	public void setAmount(String amount) {
 		this.amount = amount;
 	}
+	
+	
+	@Override
+	public String toString() {
+		return "Food [foodCode=" + foodCode + ", typeCode=" + typeCode
+				+ ", kindCode=" + kindCode + ", foodName=" + foodName
+				+ ", foodImage=" + foodImage + ", kcal=" + kcal + ", gram="
+				+ gram + ", amount=" + amount + "]";
+	}
     
-	    
-    
+	 
+	
+   /* @Override
+    public String toString() {
+    	
+    	return ""+foodCode + " " +typeCode + " " +kindCode + " " +foodName + " " +foodImage+;
+    private int kcal;
+    private int gram;
+    private String amount;
+    }*/
 
     
 }

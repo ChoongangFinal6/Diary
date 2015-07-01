@@ -9,7 +9,7 @@
 <body>
 <div id="div"></div>
 <%
-	response.sendRedirect("DiaryMain.html");
+	response.sendRedirect("FoodWrite.html");
 	//response.sendRedirect("listEmp.do");
 	//response.sendRedirect("insertDummy.do");
 %>

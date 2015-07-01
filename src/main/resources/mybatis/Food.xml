@@ -13,7 +13,13 @@
 		<result property="gram" column="gram"/>
 	</resultMap>
 
-	<select id="foodcode" parameterType="FoodResult" resultMap="int">
-		select nvl(max(foodcode),0 ) from Food where typeCode=#{typeCode} and kindCode=#{kindCode}
+ 	<insert id="fInsert" parameterType="Food" >
+     	insert into food 
+     		(typeCode, kindCode, foodCode, foodName,foodImage,kcal,amount,gram) 
+     values (#{typeCode},#{kindCode},#{foodCode},#{foodName},#{foodImage},#{kcal},#{amount},#{gram}) 
+     </insert>
+	
+	<select id="fmax" parameterType="Food" resultType="int">
+		select nvl(max(foodCode),0 ) from Food where typeCode=#{typeCode} and kindCode=#{kindCode}
 	</select> 
 </mapper>

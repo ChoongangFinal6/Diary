@@ -1,10 +1,10 @@
 package model;
 
 public class Menu {
-	private int kindCode; 
-	private int typeCode;
-    private String foodType;
-	private String foodKind;
+	private int kindCode; //음식종류 코드
+	private int typeCode; //음식타입 코드
+    private String foodType; // 음식 타임
+	private String foodKind; // 음식 종류
 	
 	public int getKindCode() {
 		return kindCode;

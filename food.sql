@@ -2,10 +2,10 @@ create table food(
 foodCode number(10) not null primary key,
 typeCode number(10) not null,
 kindCode number(10) not null,
-foodName varchar2(10) not null,
-foodImage varchar2(10)not null,
+foodName varchar2(200) not null,
+foodImage varchar2(200)not null,
 kcal number(10) not null,
-amount varchar2(10) not null,
+amount varchar2(100) not null,
 gram number(10) not null
 );
 
@@ -55,3 +55,5 @@ insert into menu values('간식',60,'아이스크림',63);
 insert into menu values('간식',60,'빵',64);
 insert into menu values('간식',60,'기타',65);
     select nvl(max(foodcode),0 ) from Food where typeCode=10 and kindCode=15;
+    
+   	select nvl(max(foodCode),0 ) from Food where typeCode=10 and kindCode=11 

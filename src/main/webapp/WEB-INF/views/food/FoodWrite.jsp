@@ -27,7 +27,7 @@ $(function(){
 </head>
 <body>
 	<h2><메뉴등록></h2>
-	<form action="" method="post" enctype="multipart/form-data">
+	<form action="diaryFoodInsert.html" method="post" enctype="multipart/form-data">
 		<div>
 			<div>종류코드</div>
 			<div>
@@ -65,7 +65,7 @@ $(function(){
 		<div>
 			<div>음식이미지</div>
 			<div>
-				<input type="button" name="foodImage" value="이미지첨부" required="required">
+				<input type="file" name="foodImage" value="이미지첨부" required="required">
 			</div>
 		</div>
 		<div>
@@ -76,7 +76,7 @@ $(function(){
 		</div>
 		
 		<div>
-			<div>목측량</div>
+			<div>목측량(1개,1그릇)</div>
 		 	<div>
 			  	<input type="number" name="amount" required="required">
 		 	</div>
