@@ -1,5 +1,5 @@
 create table food(
-foodCode number(10) not null primary key,
+foodCode number(10) not null,
 typeCode number(10) not null,
 kindCode number(10) not null,
 foodName varchar2(200) not null,
@@ -8,22 +8,23 @@ kcal number(10) not null,
 amount varchar2(100) not null,
 gram number(10) not null
 );
-
+select distinct foodType from menu;
+select foodkind from menu;
 drop table food;
 drop table menu;
 select * from food; 
 select * from menu; 
 select count(*) from Menu;
-
+select * from Food where kindCode=12;
 create table menu(
 foodType varchar2(10) not null,
 typeCode number(10) not null,
 foodKind varchar2(20)not null,
 kindCode number(10)not null
 );
-
+select nvl(max(foodCode),0 ) from Food where typeCode=10 and kindCode=#{kindCode}
 select * from Menu where typeCode=10;
-
+select foodKind from menu where foodType = '한식';
 insert into menu values('한식',10,'국밥',11);
 insert into menu values('한식',10,'볶음밥',12);
 insert into menu values('한식',10,'도시락',13);

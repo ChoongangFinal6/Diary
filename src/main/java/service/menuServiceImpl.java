@@ -18,4 +18,17 @@ public class menuServiceImpl implements menuService{
 		return fd.fmenu(typeCode);
 	}
 
+
+	public List<Menu> menuList1() {
+
+		return fd.menuList1();
+	}
+
+
+	
+	public List<Menu> menuSelectList(String foodType) {
+		
+		return fd.menuSelectList(foodType);
+	}
+
 }

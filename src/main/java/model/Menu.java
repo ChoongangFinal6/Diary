@@ -18,6 +18,11 @@ public class Menu {
 	public void setTypeCode(int typeCode) {
 		this.typeCode = typeCode;
 	}
+	@Override
+	public String toString() {
+		return "Menu [kindCode=" + kindCode + ", typeCode=" + typeCode
+				+ ", foodType=" + foodType + ", foodKind=" + foodKind + "]";
+	}
 	public String getFoodType() {
 		return foodType;
 	}

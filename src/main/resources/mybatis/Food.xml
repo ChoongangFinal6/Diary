@@ -21,5 +21,12 @@
 	
 	<select id="fmax" parameterType="Food" resultType="int">
 		select nvl(max(foodCode),0 ) from Food where typeCode=#{typeCode} and kindCode=#{kindCode}
+		
 	</select> 
+
+	<select id="Foodlist" parameterType="int" resultMap="FoodResult">
+	select * from food where kindCode=#{kindCode}
+	</select>
+	
+	
 </mapper>

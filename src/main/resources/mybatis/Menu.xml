@@ -15,4 +15,11 @@
 	<select id="ccc" resultType="int">
 		select count(*) from Menu
 	</select>
+	<select id="menuList1" resultMap="MenuResult">
+	  select distinct foodType from menu
+	</select>
+	<select id="menuSelectList" parameterType="String" resultMap="MenuResult">
+     select foodKind from menu where foodType = #{foodType}	
+	
+	</select>
 </mapper>

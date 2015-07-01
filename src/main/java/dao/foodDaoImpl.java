@@ -29,4 +29,26 @@ public class foodDaoImpl implements foodDao {
 		return session.insert("Food.fInsert", foodDto);
 	}
 
+  
+	//음식 메뉴리스트
+	public List<Food> Foodlist(int kindCode) {
+
+		return session.selectList("Food.Foodlist",kindCode);
+	}
+
+
+	public List<Menu> menuList1() {
+
+		return session.selectList("Menu.menuList1");
+	}
+
+	
+	public List<Menu> menuSelectList(String foodType) {
+		
+		return session.selectList("Menu.menuSelectList",foodType);
+	}
+	
+	
+	
+
 }
