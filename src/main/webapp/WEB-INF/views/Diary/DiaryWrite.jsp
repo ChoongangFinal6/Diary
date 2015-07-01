@@ -96,7 +96,7 @@
 					}); */
 				});
 			}).error( function() { 
-				if(confirm("등록되지 않은 장소입니다. 새로 추가하시겠습니까?")){ addNewPlace(); }
+				if(confirm($('#searchPlace').val() + "\n등록되지 않은 장소입니다.\n새로 추가하시겠습니까?")){ addNewPlace(); }
 			});			
 		});
 		
@@ -106,8 +106,24 @@
 	
 	// 새 장소 등록창 팝업
 	function addNewPlace(){
-		window.open("diaryPlaceInsertForm.html", "NewPlace",
-				"width=550,height=500,scrollbars=yes,resizable=no,left=300,top=150", "");
+		window.name = "pareWin";
+		var url = "diaryPlaceInsertForm.html"
+		if( $('#searchPlace').val()!=""){ 
+			url += "?searchPlace="+$('#searchPlace').val();
+		}
+		
+		w = 800;
+		h = 450;
+		LeftPosition = (screen.width-w)/2;
+		TopPosition = (screen.height-h)/2;
+		
+		window.open( url, "NewPlace",
+				"width="+w+",height="+h+",top="+TopPosition+",left="+LeftPosition+", scrollbars=yes,resizable=no");
+	}
+	
+	// 새 장소 등록후, 등록된 장소명 표시
+	function placeInserted(pName){
+		$('#searchPlace').attr('value', pName)
 	}
 </script>
 </head>

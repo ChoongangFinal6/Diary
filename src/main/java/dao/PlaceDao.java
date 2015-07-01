@@ -10,4 +10,5 @@ public interface PlaceDao {
 	public Place searchPlaceOne(String pName);
 	public List<Place> getPlaceSubCat2(String ptypeCat1);
 	public int placeInsert(Place place);
+	public int isRegistedPlace(String pName);
 }

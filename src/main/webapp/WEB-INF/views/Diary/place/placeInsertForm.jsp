@@ -8,6 +8,9 @@
 	src="//apis.daum.net/maps/maps3.js?apikey=eb226acb34a88bef51b7fed138d7468a"></script>
 <script type="text/javascript" src="resources/js/jquery.js"></script>
 <script type="text/javascript">
+	var isRegisted = 0;
+
+	// DAUM MAP 처리
 	$(function() {
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 		var options = { //지도를 생성할 때 필요한 기본 옵션
@@ -50,11 +53,16 @@
 			alert("지도를 클릭하여 위치를 선택 하여 주세요");
 			return false;
 		}
-
+		
+		if( isRegisted == 0){
+			alert("다른 지역명으로 시도해 주세요.");
+			return false;
+		}
+		
 		return true;
 	}
 
-	// 소분유 조회 ajax
+	// 소분류 조회 ajax
 	$(function() {
 		$('#pTypeCat1').change(function() {
 			var param = 'pTypeCat1=' + $(this).val();
@@ -71,13 +79,43 @@
 			$.ajax({ data : param });
 		});
 	});
+	
+	// 이미 등록된 장소명인지 조회 ajax
+	$(function(){
+		$('#pname').attr('value', '${pName}'); 
+		$('#pname').keyup(function(){
+			if($(this).val().length<2){
+				isRegisted = 0;
+				$('#isRegistResult').html("장소명은 2글자 이상이어야합니다.");
+			}else{
+				var param = 'pName=' + $(this).val();
+				$.ajaxSetup({
+					type : 'get',
+					url : 'isRegistedPlace.html',
+					dataType : 'text',
+					success : function(result){
+						if(result!=0){
+							isRegisted = 0;
+							$('#isRegistResult').html("이미 등록되어있는 장소입니다.");
+						}else{
+							isRegisted = 1;
+							$('#isRegistResult').html("등록가능한 장소명입니다.");
+						}
+					}
+				});
+			}
+			// 요청 전송
+			$.ajax({ data : param });
+		});
+	});
+	
 </script>
 </head>
 <body>
 	<div id="map"
 		style="width: 500px; height: 400px; float: left;"></div>
-	
-	<form action="diaryPlaceInsert.html" method="post" enctype="multipart/form-data"
+	<div id="resultMsg">${resultMsg}</div>
+	<form action="diaryPlaceInsert.html" method="post" id="frm" enctype="multipart/form-data"
 		onsubmit="return check()">
 		<input type="hidden" id="pmapx" name="pmapx" value="">
 		<input
@@ -86,9 +124,9 @@
 		<table>
 			<tr>
 				<td><div id="name">
-					장소명<input type="text" id="pname" name="pname" value=""
-						placeholder="장소의 이름을 입력해 주세요" required="required" />
-				</div></td>
+					장소명<input type="text" id="pname" name="pname" value="${pName}"
+						placeholder="장소의 이름을 입력해 주세요" autofocus="autofocus" required="required" />
+				</div><div id="isRegistResult" style="height:10px ; color:red; font-size: 8pt"></div></td>
 			</tr>
 			<tr>
 				<td><div id="type">
@@ -107,22 +145,22 @@
 						<option value="10">문화</option>
 						<option value="11">관광</option>
 						<option value="00">기타</option>
-					</select>
+					</select><br>
 					소분류 
 					<select id="pTypeCat2" name="pTypeCat2" required="required"></select>
 				</div></td>
 			</tr>
+			
 			<tr>
 				<td><div id="img">
 					<input type="file" id="pimg" name="pimg" required="required" accept="image/*">
 				</div></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="전송" />
+				<td><input type="submit" value="전송"/>
 				</td>
 			</tr>
 		</table>
 	</form>
-
 </body>
 </html>

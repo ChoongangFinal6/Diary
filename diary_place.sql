@@ -30,7 +30,7 @@ SELECT * FROM place_Category;
 DROP TABLE place_Category;
 DELETE FROM place_Category
 select pCat2Code, pCat2Name from place_Category where pCat1Code='11'
-
+SELECT COUNT(*) FROM place WHERE pName='양재역'
 
 
 -------------------------- 카테고리 ---------------------------

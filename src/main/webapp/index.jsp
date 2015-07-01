@@ -7,11 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id="div"></div>
-<%
-	response.sendRedirect("FoodWrite.html");
-	//response.sendRedirect("listEmp.do");
-	//response.sendRedirect("insertDummy.do");
-%>
+	<button onclick="location.href='DiaryWrite.html'">새 다이어리 쓰기</button>
 </body>
 </html>

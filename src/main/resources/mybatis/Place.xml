@@ -31,5 +31,8 @@
     <insert id="insertPlace" parameterType="Place">
         INSERT INTO place VALUES (pcode_seq.nextval, #{pType}, #{pName}, #{pImg}, #{pMapY}, #{pMapX})
     </insert>
-
+<!-- 등록되어있는 장소명인가 조회 -->
+	<select id="isRegistedPlace" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM place WHERE pName=#{pName}
+	</select>
 </mapper>
