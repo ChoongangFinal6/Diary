@@ -40,7 +40,7 @@
 					//iwContent += "<div style='padding:5px;'>pname : " + pname + ", pMapX : " + pmapx + ", pmapy : " + pmapy + "</div>";
 					console.log(iwContent);
 					// 마커가 표시될 위치입니다 
-					var markerPosition  = new daum.maps.LatLng(pmapx, pmapy); 
+					var markerPosition  = new daum.maps.LatLng(pmapy, pmapx); 
 					
 					/* // 마커를 생성합니다
 					var marker = new daum.maps.Marker({
@@ -52,7 +52,7 @@
 					marker.setPosition(markerPosition);
 					marker.setMap(map);
 					
-					var moveLatLon = new daum.maps.LatLng(pmapx, pmapy);
+					var moveLatLon = new daum.maps.LatLng(pmapy, pmapx);
 				    
 				    // 지도 중심을 부드럽게 이동시킵니다
 				    // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
@@ -60,7 +60,7 @@
 					
 					iwContent = '<div style="padding:15px;">'+pname
 						+'<input type="button" id="insertVisitBtn" value="확인"><div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-					iwPosition = new daum.maps.LatLng(pmapx, pmapy); //인포윈도우 표시 위치입니다
+					iwPosition = new daum.maps.LatLng(pmapy, pmapx); //인포윈도우 표시 위치입니다
 					
 					// 인포윈도우를 생성합니다
 					/* var infowindow = new daum.maps.InfoWindow({
@@ -103,8 +103,11 @@
 		
 	});
 	
+	
+	// 새 장소 등록창 팝업
 	function addNewPlace(){
-		
+		window.open("diaryPlaceInsertForm.html", "NewPlace",
+				"width=550,height=500,scrollbars=yes,resizable=no,left=300,top=150", "");
 	}
 </script>
 </head>
@@ -126,6 +129,7 @@
 		<div id="map" style="margin-top:50px; width: 500px; height: 360px; margin-right: 30px;">
 			<input type="text" id="searchPlace" style="position: absolute; z-index: 2; width: 120px;">
 			<input type="button" id="searchPlaceBtn" value="검색" style="position: absolute; z-index: 2; left: 123px;">
+			<input type="button" id="insertPlaceBtn" value="새로등록" onclick='addNewPlace()' style="position: absolute; z-index: 2; left: 163px;">
 		</div>
 		<div>
 	 		내용<br>

@@ -75,46 +75,53 @@
 </head>
 <body>
 	<div id="map"
-		style="width: 500px; height: 400px; float: left; margin-right: 30px;"></div>
-		
+		style="width: 500px; height: 400px; float: left;"></div>
+	
 	<form action="diaryPlaceInsert.html" method="post" enctype="multipart/form-data"
 		onsubmit="return check()">
-		<input type="hidden" id="pmapx" name="pmapx" value=""> <input
+		<input type="hidden" id="pmapx" name="pmapx" value="">
+		<input
 			type="hidden" id="pmapy" name="pmapy" value="">
 
-		<div id="name">
-			장소명<input type="text" id="pname" name="pname" value=""
-				placeholder="장소의 이름을 입력해 주세요" required="required" />
-		</div>
-
-		<div id="type">
-			대분류 
-			<select id="pTypeCat1" name="pTypeCat1" required="required">
-				<option value="">선택</option>
-				<option value="01">교통</option>
-				<option value="02">카페</option>
-				<option value="03">병원,의료</option>
-				<option value="04">관공서</option>
-				<option value="05">쇼핑,마트</option>
-				<option value="06">생활,편의</option>
-				<option value="07">스포츠시설</option>
-				<option value="08">음식점</option>
-				<option value="09">숙박</option>
-				<option value="10">문화</option>
-				<option value="11">관광</option>
-				<option value="00">기타</option>
-			</select>
-			소분류 
-			<select id="pTypeCat2" name="pTypeCat2" required="required">
-				
-			</select>
-		</div>
-
-		<div id="img">
-			<input type="file" id="pimg" name="pimg" required="required" accept="image/*">
-		</div>
-
-		<input type="submit" value="전송" />
+		<table>
+			<tr>
+				<td><div id="name">
+					장소명<input type="text" id="pname" name="pname" value=""
+						placeholder="장소의 이름을 입력해 주세요" required="required" />
+				</div></td>
+			</tr>
+			<tr>
+				<td><div id="type">
+					대분류
+					<select id="pTypeCat1" name="pTypeCat1" required="required">
+						<option value="">선택</option>
+						<option value="01">교통</option>
+						<option value="02">카페</option>
+						<option value="03">병원,의료</option>
+						<option value="04">관공서</option>
+						<option value="05">쇼핑,마트</option>
+						<option value="06">생활,편의</option>
+						<option value="07">스포츠시설</option>
+						<option value="08">음식점</option>
+						<option value="09">숙박</option>
+						<option value="10">문화</option>
+						<option value="11">관광</option>
+						<option value="00">기타</option>
+					</select>
+					소분류 
+					<select id="pTypeCat2" name="pTypeCat2" required="required"></select>
+				</div></td>
+			</tr>
+			<tr>
+				<td><div id="img">
+					<input type="file" id="pimg" name="pimg" required="required" accept="image/*">
+				</div></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="전송" />
+				</td>
+			</tr>
+		</table>
 	</form>
 
 </body>

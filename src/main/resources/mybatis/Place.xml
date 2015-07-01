@@ -9,11 +9,27 @@
 		<result property="pImg" column="pImg"/>
 		<result property="pMapX" column="pMapX"/>
 		<result property="pMapY" column="pMapY"/>
+		
+		<result property="pCat2Code" column="pCat2Code"/>
+		<result property="pCat2Name" column="pCat2Name"/>
 	</resultMap>
+	
 	<select id="PlaceList" parameterType="int" resultMap="PlaceResult">
 		select * from Place where pCode=#{pCode}
 	</select>
+	
 	<select id="searchPlace" parameterType="String" resultMap="PlaceResult">
 		select * from Place where pName=#{pName}
 	</select>
+
+	<!-- 세부 분류코드 -->    
+    <select id="getSubCat2" parameterType="String" resultMap="PlaceResult">
+        SELECT pCat2Code, pCat2Name FROM place_Category WHERE pCat1Code=#{pCat1Code}
+    </select> 
+    
+<!-- 새 장소 등록  -->    
+    <insert id="insertPlace" parameterType="Place">
+        INSERT INTO place VALUES (pcode_seq.nextval, #{pType}, #{pName}, #{pImg}, #{pMapY}, #{pMapX})
+    </insert>
+
 </mapper>
