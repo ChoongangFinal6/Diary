@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import model.Diary;
 import model.TodayVisit;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,5 +21,9 @@ public class DiaryDaoImpl implements DiaryDao{
 	public int visitInsert(TodayVisit todayVisit) {
 		int visitToday = session.insert("visitInsert", todayVisit);
 		return visitToday;
+	}
+	public int diaryInsert(Diary diary) {
+		int diaryInsert = session.insert("DiaryInsert", diary);
+		return diaryInsert;
 	}
 }

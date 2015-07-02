@@ -3,20 +3,16 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="TodayVisit">
 	<resultMap type="TodayVisit" id="TodayVisitResult">
+		<result property="mEmail" column="mEmail"/>
 		<result property="dNo" column="dNo"/>
-		<result property="mNo" column="mNo"/>
-		<result property="pCode" column="pCode"/>
-		<result property="tNo" column="tNo"/>
+		<result property="pName" column="pName"/>
 		<result property="tWork" column="tWork"/>
 		<result property="tTime" column="tTime"/>
 	</resultMap>
 	<select id="DiaryTodayOne" parameterType="int" resultMap="TodayVisitResult">
-		select * from TodayVisit where dNo=#{dNo} order by pCode
+		select * from TodayVisit where dNo=#{dNo}
 	</select>
 	<insert id="visitInsert" parameterType="TodayVisit">
-		<selectKey order="BEFORE" keyProperty="tNo" resultType="int">
-	  		select nvl(max(tNo),0)+1 tNo from TodayVisit
-	  	</selectKey>
-		insert into TodayVisit values(#{dNo}, #{mNo}, #{pCode}, #{tNo}, #{tWork}, #{tTime})
+		insert into TodayVisit values(#{mNo}, #{dNo}, #{pName}, #{tWork}, #{tTime})
 	</insert>
 </mapper>

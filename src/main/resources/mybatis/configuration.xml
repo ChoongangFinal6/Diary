@@ -6,12 +6,14 @@
 		<typeAlias alias="Place" type="model.Place" />
 		<typeAlias alias="TodayVisit" type="model.TodayVisit" />
 		<typeAlias alias="Menu" type="model.Menu" />
+		<typeAlias alias="Diary" type="model.Diary" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="mybatis/Place.xml" />
 		<mapper resource="mybatis/TodayVisit.xml" />
 		<mapper resource="mybatis/Menu.xml" />
+		<mapper resource="mybatis/Diary.xml" />
 	</mappers>
 
 </configuration>
