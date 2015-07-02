@@ -2,7 +2,6 @@ package model;
 
 public class Place {
 
-	int pCode; // 장소 코드
 	String pType; // 장소 타입
 	String pName; // 장소 이름
 	String pImg; // 장소 이미지
@@ -13,14 +12,6 @@ public class Place {
 	String pCat2Code;
 	String pCat2Name;
 
-	
-	public int getpCode() {
-		return pCode;
-	}
-
-	public void setpCode(int pCode) {
-		this.pCode = pCode;
-	}
 
 	public String getpType() {
 		return pType;
@@ -78,10 +69,13 @@ public class Place {
 		this.pCat2Name = pCat2Name;
 	}
 
-
 	@Override
 	public String toString() {
-		return pCode + pType + pName + pImg + pMapX + pMapY;
+		return "Place [pType=" + pType + ", pName=" + pName + ", pImg=" + pImg
+				+ ", pMapX=" + pMapX + ", pMapY=" + pMapY + ", pCat2Code="
+				+ pCat2Code + ", pCat2Name=" + pCat2Name + "]";
 	}
 
+
+	
 }

@@ -32,8 +32,7 @@ public class DiaryController {
 		String pName = req.getParameter("pName");
 		Place place = wmpService.searchPlaceOne(pName);
 		String str = "{\"place\" : [";
-			str += "{\"pcode\" : " + place.getpCode() + ", ";
-			str += "\"ptype\" : \"" + place.getpType() + "\", ";
+			str += "{\"ptype\" : \"" + place.getpType() + "\", ";
 			str += "\"pname\" : \"" + place.getpName() + "\", ";
 			str += "\"pimg\" : \"" + place.getpImg() + "\", ";
 			str += "\"pmapx\" : \"" + place.getpMapX() + "\", ";

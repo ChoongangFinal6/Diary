@@ -3,7 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Place">
 	<resultMap type="Place" id="PlaceResult">
-		<result property="pCode" column="pCode"/>
 		<result property="pType" column="pType"/>
 		<result property="pName" column="pName"/>
 		<result property="pImg" column="pImg"/>
@@ -14,9 +13,6 @@
 		<result property="pCat2Name" column="pCat2Name"/>
 	</resultMap>
 	
-	<select id="PlaceList" parameterType="int" resultMap="PlaceResult">
-		select * from Place where pCode=#{pCode}
-	</select>
 	
 	<select id="searchPlace" parameterType="String" resultMap="PlaceResult">
 		select * from Place where pName=#{pName}

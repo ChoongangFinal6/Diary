@@ -123,7 +123,8 @@
 	
 	// 새 장소 등록후, 등록된 장소명 표시
 	function placeInserted(pName){
-		$('#searchPlace').attr('value', pName)
+		$('#searchPlace').attr('value', pName);
+		$('#searchPlaceBtn').trigger('click');
 	}
 </script>
 </head>
