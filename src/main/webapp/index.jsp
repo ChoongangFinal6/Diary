@@ -9,7 +9,8 @@
 <body>
 <div id="div"></div>
 <%
-	response.sendRedirect("MenuList.html");
+	 response.sendRedirect("FoodKcalBook1.html"); 
+/* 	response.sendRedirect("FoodWrite.html"); */
 	//response.sendRedirect("listEmp.do");
 	//response.sendRedirect("insertDummy.do");
 %>

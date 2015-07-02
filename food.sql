@@ -3,7 +3,7 @@ foodCode number(10) not null,
 typeCode number(10) not null,
 kindCode number(10) not null,
 foodName varchar2(200) not null,
-foodImage varchar2(200)not null,
+foodImage varchar2(200) not null,
 kcal number(10) not null,
 amount varchar2(100) not null,
 gram number(10) not null
@@ -22,6 +22,11 @@ typeCode number(10) not null,
 foodKind varchar2(20)not null,
 kindCode number(10)not null
 );
+	
+select foodKind,kindCode from menu where foodType = '한식';	
+select foodKind from menu where foodType = '한식';
+select *from food where kindCode=11;
+select * from food where kindCode; 
 select nvl(max(foodCode),0 ) from Food where typeCode=10 and kindCode=#{kindCode}
 select * from Menu where typeCode=10;
 select foodKind from menu where foodType = '한식';

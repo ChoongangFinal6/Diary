@@ -34,7 +34,7 @@ public class FoodController {
 	 
 	 
 	 //음식 중간 분류 가져오기
-	 @RequestMapping(value="MenuList")
+	 @RequestMapping(value="FoodKcalBook1")
 	 public String menuList(Model model){
 		 List<Menu> MenuList1 = ms.menuList1();
 		 
@@ -61,12 +61,6 @@ public class FoodController {
         	// }
          }
 		 model.addAttribute("MenuList1",MenuList1);
-		 model.addAttribute("Menu0",Menu0);
-		 model.addAttribute("Menu1",Menu1);
-		 model.addAttribute("Menu2",Menu2);
-		 model.addAttribute("Menu3",Menu3);
-		 model.addAttribute("Menu4",Menu4);
-		 model.addAttribute("Menu5",Menu5);
 		 model.addAttribute("dlist",dlist);
 		 
 		 for (int i = 0; i < Menu1.size(); i++) {
@@ -81,9 +75,18 @@ public class FoodController {
 	 //음식메뉴 리스트
 		@RequestMapping(value="FoodList")
 		public String FoodList(int kindCode, Model model){
-
+            System.out.println("음식메뉴"+kindCode);
 			List<Food> foodList = ks.Foodlist(kindCode);
-	        model.addAttribute("foodlist",foodList);
+			String str ="1231312.jpg/1231231.jpg/1231232.jpg/1231.jpg";
+			
+			String[] df 	= str.split("/");
+			System.out.println(df[0]);
+			System.out.println(df[1]);
+			System.out.println(df[2]);
+			
+			System.out.println("푸드리스트 :"+foodList);
+	        model.addAttribute("foodList",foodList);
+	        model.addAttribute("aaa","a111aa");
 			
 			return "food/FoodList";
 		}
@@ -112,7 +115,7 @@ public class FoodController {
 			foodDto.setTypeCode(Integer.parseInt(req.getParameter("typeCode")));
 			foodDto.setKindCode(Integer.parseInt(req.getParameter("kindCode")));
 			foodDto.setKcal(Integer.parseInt(req.getParameter("kcal")));
-			foodDto.setFoodName("foodName");
+			foodDto.setFoodName(req.getParameter("foodName"));
 			foodDto.setGram(Integer.parseInt(req.getParameter("gram")));
 			foodDto.setAmount(req.getParameter("amount"));
 			foodDto.setFoodImage(req.getFile("foodImage").getOriginalFilename());		
@@ -152,7 +155,7 @@ public class FoodController {
 		return "food/FoodWrite";
 	}
 	
-	@RequestMapping(value="FoodKcalBook")
+	@RequestMapping(value="FoodKcalBook2")
 	public String FoodKcalBook(){
 	System.out.println("Ctrl:FoodWrite");
 		return "food/FoodKcalBook";
