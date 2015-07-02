@@ -38,4 +38,8 @@ public class DiaryDaoImpl implements DiaryDao{
 		int delDiary = session.delete("deleteDiary", dNo);
 		return delDiary;
 	}
+	public int diaryUpdateWrite(Diary diary) {
+		int diaryUpWrite = session.update("diaryUpdateWrite", diary);
+		return diaryUpWrite;
+	}
 }

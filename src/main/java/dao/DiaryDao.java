@@ -12,4 +12,5 @@ public interface DiaryDao {
 	public int searchDNo(String mEmail);
 	public int deleteTV(int dNo);
 	public int deleteDiary(int dNo);
+	public int diaryUpdateWrite(Diary diary);
 }

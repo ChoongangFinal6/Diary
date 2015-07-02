@@ -32,4 +32,8 @@
 	<delete id="deleteDiary" parameterType="int">
 		delete Diary where dNo=#{dNo}
 	</delete>
+	
+	<update id="diaryUpdateWrite" parameterType="Diary">
+		update Diary set dTitle=#{dTitle, jdbcType=VARCHAR}, dDay=#{dDay, jdbcType=VARCHAR}, dContent=#{dContent}, dWeather=#{dWeather, jdbcType=VARCHAR}, foodList=#{foodList, jdbcType=VARCHAR} where dNo = #{dNo}
+	</update>
 </mapper>

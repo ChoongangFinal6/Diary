@@ -18,6 +18,9 @@ public interface WmpService {
 	public int deleteTV(int dNo);
 	public int deleteDiary(int dNo);
 	
+	// 생성된 다이어리에서 입력된 데이터로 수정하는 부분
+	public int diaryUpdateWrite(Diary diary);
+	
 	// Diary_Place
 	List<Place> getPlaceSubCat2(String ptypeCat1);
 	int insertPlace(Place pDto);

@@ -176,7 +176,7 @@ public class DiaryController {
 	
 	@RequestMapping(value="DiaryWrite", method=RequestMethod.POST)
 	public String DiaryWrite(Diary diary, Model model){
-		int result = wmpService.diaryInsert(diary);
+		int result = wmpService.diaryUpdateWrite(diary);
 		if(result > 0){
 			model.addAttribute("result", result);
 			return "Diary/DiaryMain";

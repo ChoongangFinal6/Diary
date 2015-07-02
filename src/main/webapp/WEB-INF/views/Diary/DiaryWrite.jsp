@@ -115,7 +115,9 @@
 			});			
 		});
 		
-		$('#dweather').click(function(){
+		
+		
+		$('#weather').click(function(){
 			if($('#weatherImg').css('display') == 'none'){
 				$('#weatherImg').css('display', 'block');
 			}else{
@@ -123,19 +125,35 @@
 			}
 			return false;
 		});
+		
+
 		$('.weatherImages').each(function(){
 			$(this).click(function(){
 				console.log($(this));
 				var src = $(this).prop('src');
 				var title = $(this).prop('title');
-				$('#dWeather').prop({"title":title,"src":src});
+				$('#weather').prop({"title":title,"src":src});
 				$('#weatherImg').css('display', 'none');
+				
+
+				var imageName = "";
+				
+				var imageSearch = src.split("/");
+				for(var i = 0; i <= imageSearch.length; i++){
+					if(i != imageSearch.length){	
+						imageName = imageSearch[i];
+					}
+				}
+				
+				console.log(imageName);
+				$('#dWeather').val(imageName);
 			});
 		});
 
 		$('#diaryCancel').click(function(){
 			location.href="diaryCancel.html?dNo="+$('#dNo').val();
 		});
+		
 	});
 	
 	
@@ -171,18 +189,19 @@
 </script>
 </c:if>
 
-<div id="bgDisplay" style="position: fixed; opacity=1; background-color: black; z-index: 10; margin: -30px -30px 0 0; opacity:0.6;"></div>
 <h3 style="margin: 8px;">다이어리 쓰기</h3>
+
 <form action="DiaryWrite.html" method="post" style="margin: 8px;">
+	제목 <input type="text" name="dTitle" required="required">
 	<div style="width: 45%">
 		<input type="hidden" id="pmapx" name="pmapx" value="">
 		<input type="hidden" id="pmapy" name="pmapy" value="">
 		<div>
 			날짜 <input type="date" name="dDay">
 		</div>
-		<div id="dweather">
+		<div>
 			<button style="border: 0px; background-color: white;">
-				<img id="dWeather" title="맑음" src="resources/weatherImg/DB01.png"/>
+				<img id="weather" title="맑음" src="resources/weatherImg/DB01.png"/>
 			</button>
 		</div>
 		<div id="weatherImg" style="display: none;">
@@ -211,16 +230,19 @@
 		</div>
 		<div>
 	 		내용<br>
-	 		<textarea rows="10" cols="58" name="Dcontent" placeholder="내용"></textarea>
+	 		<textarea rows="10" cols="58" name="dContent" placeholder="내용"></textarea>
 	 	</div>
 	 	
 	 	<input type="hidden" name="dNo" id="dNo" value="${dNo }">
 	 	<input type="hidden" name="pName" id="pName" value="">
 	 	<input type="hidden" name="mEmail" id="mEmail" value="${mEmail }">
+	 	<input type="hidden" name="dWeather" id="dWeather" value="">
 	</div>
 	<input type="submit" value="확인" >
 	<input type="button" value="취소" id="diaryCancel">
 </form>
+
+<div id="bgDisplay" style="position: fixed; opacity=1; background-color: black; z-index: 10; margin: -30px -30px 0 0; opacity:0.6;"></div>
 
 </body>
 </html>
