@@ -9,7 +9,7 @@
 <body>
 
 	<button onclick="location.href='DiaryWrite.html'">새 다이어리 쓰기</button>
-	<button onclick="location.href='MenuList.html'">menu</button>
+	<button onclick="location.href='FoodKcalBook1.html'">FoodKcalBook1</button>
 
 </body>
 </html>
