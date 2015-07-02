@@ -44,4 +44,7 @@ public class WmpServiceImpl implements WmpService{
 	public int diaryInsert(Diary diary) {
 		return diaryDao.diaryInsert(diary);
 	}
+	public int searchDNo(String mEmail) {
+		return diaryDao.searchDNo(mEmail);
+	}
 }

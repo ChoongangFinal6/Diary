@@ -84,8 +84,7 @@
 					// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
 					infowindow.open(map, marker);
 					
-					var visitVal = "?dNo=" + $('#dNo').val() + "&mEmail=" + $('#mEmail').val() +
-						"&pName=" + $('#pName').val();
+					var visitVal = "?dNo="+$('#dNo').val()+"&mEmail=" + $('#mEmail').val() + "&pName=" + $('#pName').val();
 					
 					$('#insertVisitBtn').click(function(){
 						var wid = 500;
@@ -186,8 +185,8 @@
 	 		<textarea rows="10" cols="58" name="Dcontent" placeholder="내용"></textarea>
 	 	</div>
 	 	
+	 	<input type="hidden" id="dNo" value="${dNo }">
 	 	<input type="hidden" id="pName" value="">
-	 	<input type="hidden" id="dNo" value="1">
 	 	<input type="hidden" id="mEmail" value="${mEmail }">
 	</div>
 	<input type="submit" value="확인" >

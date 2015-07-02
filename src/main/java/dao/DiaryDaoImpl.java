@@ -26,4 +26,8 @@ public class DiaryDaoImpl implements DiaryDao{
 		int diaryInsert = session.insert("DiaryInsert", diary);
 		return diaryInsert;
 	}
+	public int searchDNo(String mEmail) {
+		int searchDno = session.selectOne("searchDNo", mEmail);
+		return searchDno;
+	}
 }

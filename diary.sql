@@ -13,9 +13,12 @@ CREATE TABLE Diary (
 		Dno
 	)
 )
-
+select * from diary;
+select max(dNo) from Diary where mEmail='ttt@choongang.com'
+delete diary;
 drop table diary;
 
+insert into diary values ('ttt@choongang.com', 1, null, null, null, null, null)
 
 -- test table
 CREATE TABLE place (
