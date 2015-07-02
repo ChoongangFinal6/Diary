@@ -15,4 +15,7 @@
 	<insert id="visitInsert" parameterType="TodayVisit">
 		insert into TodayVisit values(#{mEmail}, #{dNo}, #{pName}, #{tWork}, #{tTime})
 	</insert>
+	<delete id="deleteTV" parameterType="int">
+		delete TodayVisit where dNo=#{dNo}
+	</delete>
 </mapper>

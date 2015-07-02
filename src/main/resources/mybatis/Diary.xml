@@ -28,4 +28,8 @@
 	  	</selectKey>
 		insert into Diary values(#{mEmail}, #{dNo}, #{dTitle, jdbcType=VARCHAR}, #{dDay, jdbcType=VARCHAR}, #{dContent, jdbcType=VARCHAR}, #{dWeather, jdbcType=VARCHAR}, #{foodList, jdbcType=VARCHAR})
 	</insert>
+	
+	<delete id="deleteDiary" parameterType="int">
+		delete Diary where dNo=#{dNo}
+	</delete>
 </mapper>

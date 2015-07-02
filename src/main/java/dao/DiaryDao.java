@@ -10,4 +10,6 @@ public interface DiaryDao {
 	public int visitInsert(TodayVisit todayVisit);
 	public int diaryInsert(Diary diary);
 	public int searchDNo(String mEmail);
+	public int deleteTV(int dNo);
+	public int deleteDiary(int dNo);
 }

@@ -159,9 +159,6 @@ public class DiaryController {
 		int result = wmpService.diaryInsert(diary);
 
 		int dNo = wmpService.searchDNo(mEmail);
-		System.out.println("dNo: " + dNo);
-		
-		System.out.println(result);
 		
 		model.addAttribute("result", result);
 		model.addAttribute("mEmail", mEmail);
@@ -188,5 +185,20 @@ public class DiaryController {
 			return "redirect:Diary/DiaryWrite";			
 		}
 	}
-
+	@RequestMapping(value="diaryCancel")
+	public String diaryCancel(HttpServletRequest req,HttpServletResponse rep, Model model){
+		int dNo = Integer.parseInt(req.getParameter("dNo"));
+		System.out.println(dNo);
+		
+		int result = 0;
+		
+		
+		int delTV = wmpService.deleteTV(dNo);
+		System.out.println("delTv : " + delTV);
+		result = wmpService.deleteDiary(dNo);
+		System.out.println("result : " + result);
+		
+		model.addAttribute("result", result);
+		return "Diary/DiaryMain";
+	}
 }

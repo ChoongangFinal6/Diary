@@ -59,4 +59,3 @@ CREATE TABLE place_Category {
 	pCat2Code VARCHAR2(4)
 }
 
-

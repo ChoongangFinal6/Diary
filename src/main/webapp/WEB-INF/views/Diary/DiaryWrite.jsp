@@ -130,6 +130,9 @@
 				$('#weatherImg').css('display', 'none');
 			});
 		});
+		$('#diaryCancel').click(function(){
+			location.href="diaryCancel.html?dNo="+$('#dNo').val();
+		});
 	});
 	
 </script>
@@ -185,11 +188,12 @@
 	 		<textarea rows="10" cols="58" name="Dcontent" placeholder="내용"></textarea>
 	 	</div>
 	 	
-	 	<input type="hidden" id="dNo" value="${dNo }">
-	 	<input type="hidden" id="pName" value="">
-	 	<input type="hidden" id="mEmail" value="${mEmail }">
+	 	<input type="hidden" name="dNo" id="dNo" value="${dNo }">
+	 	<input type="hidden" name="pName" id="pName" value="">
+	 	<input type="hidden" name="mEmail" id="mEmail" value="${mEmail }">
 	</div>
 	<input type="submit" value="확인" >
+	<input type="button" value="취소" id="diaryCancel">
 </form>
 
 </body>
