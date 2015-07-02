@@ -3,17 +3,17 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Food">
 	<resultMap type="Food" id="FoodResult">
+		<result property="foodCode" column="foodCode"/>
 		<result property="typeCode" column="typeCode"/>
 		<result property="kindCode" column="kindCode"/>
-		<result property="foodCode" column="foodCode"/>
 		<result property="foodName" column="foodName"/>
 		<result property="foodImage" column="foodImage"/>
 		<result property="kcal" column="kcal"/>
-		<result property="amount" column="amount"/>
 		<result property="gram" column="gram"/>
+		<result property="amount" column="amount"/>
 	</resultMap>
 
- 	<insert id="fInsert" parameterType="Food" >
+	 <insert id="fInsert" parameterType="Food" >
      	insert into food 
      		(typeCode, kindCode, foodCode, foodName,foodImage,kcal,amount,gram) 
      values (#{typeCode},#{kindCode},#{foodCode},#{foodName},#{foodImage},#{kcal},#{amount},#{gram}) 

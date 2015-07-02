@@ -16,19 +16,19 @@ public class PlaceDaoImpl implements PlaceDao {
 
 	// 소분류 지역코드 조회
 	public List<Place> getPlaceSubCat2(String pCat1Code) {
-		System.out.println("	Dao: getPCat2_"+pCat1Code);
+		System.out.println("	Dao_getPCat2 : "+pCat1Code);
 		return  session.selectList("Place.getSubCat2", pCat1Code);
 	}
 
 	// 새 장소 등록
 	public int placeInsert(Place place) {
-		System.out.println("	Dao: placeInsert");
+		System.out.println("	Dao_placeInsert");
 		return session.insert("Place.insertPlace", place);
 	}
 	
 
-	public Place placeOne(int pcode){
-		Place place = session.selectOne("PlaceList", pcode); 
+	public Place placeOne(String pName){
+		Place place = session.selectOne("PlaceList", pName); 
 		return place;
 	}
 
@@ -36,5 +36,11 @@ public class PlaceDaoImpl implements PlaceDao {
 	public Place searchPlaceOne(String pName) {
 		Place searchPlaceOne = session.selectOne("searchPlace", pName);
 		return searchPlaceOne;
+	}
+
+	// 이미 등록되어 있는 장소명인지 조회
+	public int isRegistedPlace(String pName) {
+		System.out.println(	"DAO_isRegistedPlace : " +pName);		
+		return session.selectOne("Place.isRegistedPlace", pName);
 	}
 }

@@ -7,6 +7,7 @@
 		<typeAlias alias="TodayVisit" type="model.TodayVisit" />
 		<typeAlias alias="Menu" type="model.Menu" />
 		<typeAlias alias="Food" type="model.Food" />
+		<typeAlias alias="Diary" type="model.Diary" />
 	</typeAliases>
 
 	<mappers>
@@ -14,6 +15,7 @@
 		<mapper resource="mybatis/TodayVisit.xml" />
 		<mapper resource="mybatis/Menu.xml" />
 		<mapper resource="mybatis/Food.xml" />
+		<mapper resource="mybatis/Diary.xml" />
 	</mappers>
 
 </configuration>

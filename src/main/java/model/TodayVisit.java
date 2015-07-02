@@ -1,37 +1,29 @@
 package model;
 
 public class TodayVisit {
+	private String mEmail;
 	private int dNo;
-	private int mNo;
-	private int pCode;
-	private int tNo;
+	private String pName;
 	private String tWork;
 	private String tTime;
 	
-	
+	public String getmEmail() {
+		return mEmail;
+	}
+	public void setmEmail(String mEmail) {
+		this.mEmail = mEmail;
+	}
 	public int getdNo() {
 		return dNo;
 	}
 	public void setdNo(int dNo) {
 		this.dNo = dNo;
 	}
-	public int getmNo() {
-		return mNo;
+	public String getpName() {
+		return pName;
 	}
-	public void setmNo(int mNo) {
-		this.mNo = mNo;
-	}
-	public int getpCode() {
-		return pCode;
-	}
-	public void setpCode(int pCode) {
-		this.pCode = pCode;
-	}
-	public int gettNo() {
-		return tNo;
-	}
-	public void settNo(int tNo) {
-		this.tNo = tNo;
+	public void setpName(String pName) {
+		this.pName = pName;
 	}
 	public String gettWork() {
 		return tWork;
@@ -45,5 +37,6 @@ public class TodayVisit {
 	public void settTime(String tTime) {
 		this.tTime = tTime;
 	}
+	
 	
 }

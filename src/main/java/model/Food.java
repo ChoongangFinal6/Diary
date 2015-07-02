@@ -68,16 +68,5 @@ public class Food {
 				+ gram + ", amount=" + amount + "]";
 	}
     
-	 
-	
-   /* @Override
-    public String toString() {
-    	
-    	return ""+foodCode + " " +typeCode + " " +kindCode + " " +foodName + " " +foodImage+;
-    private int kcal;
-    private int gram;
-    private String amount;
-    }*/
 
-    
 }
