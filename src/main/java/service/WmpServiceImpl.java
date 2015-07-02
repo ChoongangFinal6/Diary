@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import model.Diary;
 import model.Place;
 import model.TodayVisit;
 
@@ -18,8 +19,8 @@ public class WmpServiceImpl implements WmpService{
 	@Autowired
 	private PlaceDao pd;
 
-	public Place placeOne(int pcode) {
-		return pd.placeOne(pcode);
+	public Place placeOne(String pName) {
+		return pd.placeOne(pName);
 	}
 	public List<TodayVisit> todayVisitList(int dno) {
 		return diaryDao.todayVisitList(dno);
@@ -42,5 +43,10 @@ public class WmpServiceImpl implements WmpService{
 	// 등록되어 있는 장소명인지 조회
 	public int isRegistedPlace(String pName) {
 		return pd.isRegistedPlace(pName);
+	}
+	
+	public int diaryInsert(Diary diary) {
+		return diaryDao.diaryInsert(diary);
+
 	}
 }

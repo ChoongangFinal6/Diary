@@ -2,11 +2,11 @@ package model;
 
 public class Place {
 
-	String pType; // 장소 타입
 	String pName; // 장소 이름
+	String pType; // 장소 타입
 	String pImg; // 장소 이미지
-	Double pMapX; // x좌표
 	Double pMapY; // y좌표
+	Double pMapX; // x좌표
 
 	// mybatis 파라미터용 변수
 	String pCat2Code;
@@ -69,7 +69,6 @@ public class Place {
 		this.pCat2Name = pCat2Name;
 	}
 
-	@Override
 	public String toString() {
 		return "Place [pType=" + pType + ", pName=" + pName + ", pImg=" + pImg
 				+ ", pMapX=" + pMapX + ", pMapY=" + pMapY + ", pCat2Code="

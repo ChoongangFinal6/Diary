@@ -13,7 +13,10 @@ CREATE TABLE Diary (
 		Dno
 	)
 )
+
 SELECT * FROM diary
+insert into diary values('ttt@ch.com',1, null,null,null,null,null);
+
 
 -- todayvisit table
 drop table todayvisit;
@@ -30,8 +33,6 @@ CREATE TABLE TodayVisit(
 select * from TODAYVISIT;
 delete TODAYVISIT;
 
-
-
 INSERT INTO TodayVisit values (2, 93371, 5, 1, '공부하러 감', '09:00~18:00');
 INSERT INTO TodayVisit values (2, 93371, 6, 2, '친구 기다림', '18:30~19:00');
 INSERT INTO TodayVisit values (2, 93371, 7, 3, '집으로 가기 위해 역으로 감', '19:00~20:00');
@@ -42,8 +43,8 @@ INSERT INTO TodayVisit values (2, 93371, 7, 3, '집으로 가기 위해 역으�
 -- place table -------------------------------------------------------- 
 DROP TABLE place;
 CREATE TABLE place (
+	PName VARCHAR2(30) PRIMARY KEY,	--	장소 이름(PK)
 	PType VARCHAR2(20) NOT NULL,	-- 	장소 타입	
-	PName VARCHAR2(30) NOT NULL,	--	장소 이름
 	PImg VARCHAR2(100) NOT NULL,	--	장소 이미지
 	PMapY NUMBER(20, 15) NOT NULL,	--	y좌표	 위도
 	PMapX NUMBER(20, 15) NOT NULL	--	x좌표 경도
@@ -52,10 +53,12 @@ CREATE TABLE place (
 SELECT * FROM place;
 delete place;
 
+SELECT * FROM place;
+DROP TABLE place;
 
-INSERT INTO place values ('0403', '서울역삼초등학교', 'image1.jpg', 37.49725576460605, 127.03098542194168);
-INSERT INTO place values ('0409', '중앙정보처리학원', 'image2.jpg', 37.49696807978383, 127.02845219806613);
-INSERT INTO place values ('0101', '양재역', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('서울역삼초등학교', '0403', 'image1.jpg', 37.49725576460605, 127.03098542194168);
+INSERT INTO place values ('중앙정보처리학원', '0409', 'image2.jpg', 37.49696807978383, 127.02845219806613);
+INSERT INTO place values ('양재역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
 
 SELECT COUNT(*) FROM place WHERE pName='양재역'
 
@@ -68,11 +71,11 @@ CREATE TABLE place_Category (
 	pCat1Name VARCHAR2(30),
 	pCat2Code VARCHAR2(4),
 	pCat2Name VARCHAR2(30)
+
 )
+
 SELECT * FROM place_Category;
 DELETE FROM place_Category;
-
-select pCat2Code, pCat2Name from place_Category where pCat1Code='11'
 
 INSERT INTO place_Category values('01', '교통시설'	, '01', '지하철');
 INSERT INTO place_Category values('01', '교통시설'	, '02', '버스');
@@ -150,5 +153,3 @@ INSERT INTO place_Category values('11', '관광'	, '03', '건축.조형물');
 INSERT INTO place_Category values('11', '관광'	, '00', '기타');
 
 INSERT INTO place_Category values('00', '기타'	, '00', '기타');
-
-

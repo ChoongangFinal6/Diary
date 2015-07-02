@@ -27,8 +27,8 @@ public class PlaceDaoImpl implements PlaceDao {
 	}
 	
 
-	public Place placeOne(int pcode){
-		Place place = session.selectOne("PlaceList", pcode); 
+	public Place placeOne(String pName){
+		Place place = session.selectOne("PlaceList", pName); 
 		return place;
 	}
 

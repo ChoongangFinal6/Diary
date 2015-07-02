@@ -3,17 +3,15 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Place">
 	<resultMap type="Place" id="PlaceResult">
-		<result property="pType" column="pType"/>
 		<result property="pName" column="pName"/>
+		<result property="pType" column="pType"/>
 		<result property="pImg" column="pImg"/>
-		<result property="pMapX" column="pMapX"/>
 		<result property="pMapY" column="pMapY"/>
-		
+		<result property="pMapX" column="pMapX"/>
 		<result property="pCat2Code" column="pCat2Code"/>
-		<result property="pCat2Name" column="pCat2Name"/>
+		<result property="pCat2Name" column="pCat2Name"/>		
 	</resultMap>
-	
-	
+
 	<select id="searchPlace" parameterType="String" resultMap="PlaceResult">
 		select * from Place where pName=#{pName}
 	</select>
@@ -25,7 +23,7 @@
     
 <!-- 새 장소 등록  -->    
     <insert id="insertPlace" parameterType="Place">
-        INSERT INTO place VALUES (pcode_seq.nextval, #{pType}, #{pName}, #{pImg}, #{pMapY}, #{pMapX})
+        INSERT INTO place VALUES (#{pName}, #{pType}, #{pImg}, #{pMapY}, #{pMapX})
     </insert>
 <!-- 등록되어있는 장소명인가 조회 -->
 	<select id="isRegistedPlace" parameterType="String" resultType="int">

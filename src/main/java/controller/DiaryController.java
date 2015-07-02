@@ -2,12 +2,16 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Diary;
 import model.Place;
 import model.TodayVisit;
 
@@ -28,7 +32,6 @@ public class DiaryController {
 	public String searchPlace(HttpServletRequest req, HttpServletResponse rep, Model model) throws IOException{
 
 		rep.setContentType("text/html; charset=utf-8");
-		
 		String pName = req.getParameter("pName");
 		Place place = wmpService.searchPlaceOne(pName);
 		String str = "{\"place\" : [";
@@ -74,13 +77,33 @@ public class DiaryController {
 	}
 	
 	@RequestMapping(value="insertVisit", method=RequestMethod.GET)
-	public String insertVisit(HttpServletRequest req,HttpServletResponse rep, Model model) throws IOException{
+	public String insertVisit(HttpServletRequest req,HttpServletResponse rep, Model model) throws IOException, ParseException{
 		int dNo = Integer.parseInt(req.getParameter("dNo"));;
-		int mNo = Integer.parseInt(req.getParameter("mNo"));;
-		int pCode = Integer.parseInt(req.getParameter("pCode"));
+		String mEmail = req.getParameter("mEmail");
+		String pName = req.getParameter("pName");
 		String tWork = req.getParameter("tWork");
 		String time1 = req.getParameter("time1");
 		String time2 = req.getParameter("time2");
+		
+		
+		
+		rep.setContentType("text/html; charset=utf-8");
+		PrintWriter out = rep.getWriter();
+		int result = 0;
+		
+		DateFormat sdf = new SimpleDateFormat("hh:mm");
+		Date date1 = sdf.parse(time1);
+		Date date2 = sdf.parse(time2);
+		System.out.println("time1 : " + time1);
+		System.out.println("time2 : " + time2);
+		System.out.println(date1.after(date2));
+		if(date1.after(date2)){
+			result = 2;
+			out.print(result);
+		}else if(time2.equals("00:00")){
+			result = 3;
+			out.print(result);
+		}else{
 		
 		String tTime = time1 + "~" + time2;
 		
@@ -91,29 +114,27 @@ public class DiaryController {
 		TodayVisit todayVisit = new TodayVisit();
 		
 		todayVisit.setdNo(dNo);
-		todayVisit.setmNo(mNo);
-		todayVisit.setpCode(pCode);
+		todayVisit.setmEmail(mEmail);
+		todayVisit.setpName(pName);
 		todayVisit.settWork(tWork);
 		todayVisit.settTime(tTime);
 		
-		int result = wmpService.visitInsert(todayVisit);
+		result = wmpService.visitInsert(todayVisit);
 		
-		rep.setContentType("text/html; charset=utf-8");
-		PrintWriter out = rep.getWriter();
 		out.print(result);
-		
+		}
 		return null;
 	}
 	
 	@RequestMapping(value="DiaryMain")
-	public String DiaryMain(){
+	public String DiaryMain(Model model){
 		return "Diary/DiaryMain";
 	}
 	@RequestMapping(value="insertVisitView")
-	public String insertVisitView(int dNo, int mNo, int pCode, Model model){
+	public String insertVisitView(int dNo, String mEmail, String pName, Model model){
 		model.addAttribute("dNo", dNo);
-		model.addAttribute("pCode", pCode);
-		model.addAttribute("mNo", mNo);
+		model.addAttribute("pName", pName);
+		model.addAttribute("mEmail", mEmail);
 		
 		return "Diary/insertVisitView";
 	}
@@ -124,10 +145,32 @@ public class DiaryController {
 		return "Diary/DiaryDetail";
 	}
 	
-	@RequestMapping(value="DiaryWrite")
-	public String DiaryWrite(){
+	@RequestMapping(value="DiaryWrite", method=RequestMethod.GET)
+	public String DiaryWriteView(Model model){
+
+		String mEmail = "ttt@choongang.com";
+		model.addAttribute("mEmail", mEmail);
 		
 		return "Diary/DiaryWrite";
 	}
 	
+	/*@RequestMapping(value="write",method=RequestMethod.POST)
+	public String write(Board board, Model model) {
+		int result = bs.insert(board);
+		if (result > 0) {	return "redirect:list.do";
+		} else {	return "writeForm";	}
+	}*/
+	
+	@RequestMapping(value="DiaryWrite", method=RequestMethod.POST)
+	public String DiaryWrite(Diary diary, Model model){
+		int result = wmpService.diaryInsert(diary);
+		if(result > 0){
+			model.addAttribute("result", result);
+			return "Diary/DiaryMain";
+		}else{
+			model.addAttribute("result", result);
+			return "redirect:Diary/DiaryWrite";			
+		}
+	}
+
 }
