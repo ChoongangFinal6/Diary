@@ -26,7 +26,6 @@ $(function(){
 		$.getJSON("placeAll.html", params, function (data) {
 			alert(data);
 			$.each(data.paceAll, function (index, pdto) {
-				var pcode = pdto.pcode;
 				var ptype = pdto.ptype;
 				var pname = pdto.pname;
 				var pimg = pdto.pimg;
@@ -46,5 +45,6 @@ $(function(){
 <input type="button" id="JSONtest" value="해당 JSON보기">
 <div id="div"></div>
 <input type="hidden" id="dNo" name="dNo" value="2">
+
 </body>
 </html>

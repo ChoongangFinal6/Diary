@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Diary">
+	<resultMap type="Diary" id="DiaryResult">
+		<result property="mEmail" column="mEmail"/>
+		<result property="dNo" column="dNo"/>
+		<result property="dTitle" column="dTitle"/>
+		<result property="dDay" column="dDay"/>
+		<result property="dContent" column="dContent"/>
+		<result property="dWeather" column="dWeather"/>
+		<result property="foodList" column="foodList"/>
+	</resultMap>
+	<select id="DiaryList" resultMap="DiaryResult">
+		select * from Diary
+	</select>
+	
+	<insert id="DiaryInsert" parameterType="Diary">
+		<!-- <selectKey order="BEFORE" keyProperty="tNo" resultType="int">
+	  		select nvl(max(tNo),0)+1 tNo from TodayVisit
+	  	</selectKey> -->
+		<selectKey order="BEFORE" keyProperty="dNo" resultType="int">
+	  		select nvl(max(dNo),0)+1 dNo from Diary where mEmail=#{mEmail}
+	  	</selectKey>
+		insert into Diary values(#{mEmail}, #{dNo}, #{dTitle}, #{dDay}, #{dContent}, #{dWeather}, #{foodList})
+	</insert>
+</mapper>

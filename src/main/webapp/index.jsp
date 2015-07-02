@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -7,11 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id="div"></div>
-<%
-	response.sendRedirect("MenuList.html");
-	//response.sendRedirect("listEmp.do");
-	//response.sendRedirect("insertDummy.do");
-%>
+
+	<button onclick="location.href='DiaryWrite.html'">새 다이어리 쓰기</button>
+	<button onclick="location.href='MenuList.html'">menu</button>
+
 </body>
 </html>
