@@ -13,6 +13,6 @@
 		select * from TodayVisit where dNo=#{dNo}
 	</select>
 	<insert id="visitInsert" parameterType="TodayVisit">
-		insert into TodayVisit values(#{mNo}, #{dNo}, #{pName}, #{tWork}, #{tTime})
+		insert into TodayVisit values(#{mEmail}, #{dNo}, #{pName}, #{tWork}, #{tTime})
 	</insert>
 </mapper>
