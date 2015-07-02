@@ -1,4 +1,4 @@
--- diary table
+﻿-- diary table
 drop table diary;
 CREATE TABLE Diary (
 	Memail VARCHAR2(50),	-- 회원 이메일
@@ -14,8 +14,12 @@ CREATE TABLE Diary (
 	)
 )
 
-SELECT * FROM diary
-insert into diary values('ttt@ch.com',1, null,null,null,null,null);
+SELECT * FROM diary;
+select max(dNo) from Diary where mEmail='ttt@choongang.com'
+delete diary;
+drop table diary;
+
+insert into diary values ('ttt@choongang.com', 1, null, null, null, null, null)
 
 
 -- todayvisit table
@@ -36,8 +40,6 @@ delete TODAYVISIT;
 INSERT INTO TodayVisit values (2, 93371, 5, 1, '공부하러 감', '09:00~18:00');
 INSERT INTO TodayVisit values (2, 93371, 6, 2, '친구 기다림', '18:30~19:00');
 INSERT INTO TodayVisit values (2, 93371, 7, 3, '집으로 가기 위해 역으로 감', '19:00~20:00');
-
-
 
 
 -- place table -------------------------------------------------------- 
@@ -153,3 +155,4 @@ INSERT INTO place_Category values('11', '관광'	, '03', '건축.조형물');
 INSERT INTO place_Category values('11', '관광'	, '00', '기타');
 
 INSERT INTO place_Category values('00', '기타'	, '00', '기타');
+

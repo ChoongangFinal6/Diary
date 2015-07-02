@@ -14,6 +14,9 @@ public interface WmpService {
 	public Place searchPlaceOne(String pName);
 	public int visitInsert(TodayVisit todayVisit);
 	public int diaryInsert(Diary diary);
+	public int searchDNo(String mEmail);
+	public int deleteTV(int dNo);
+	public int deleteDiary(int dNo);
 	
 	// Diary_Place
 	List<Place> getPlaceSubCat2(String ptypeCat1);

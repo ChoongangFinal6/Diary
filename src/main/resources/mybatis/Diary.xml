@@ -15,6 +15,10 @@
 		select * from Diary
 	</select>
 	
+	<select id="searchDNo" parameterType="String" resultType="int">
+		select max(dNo) dNo from Diary where mEmail=#{mEmail}
+	</select>
+	
 	<insert id="DiaryInsert" parameterType="Diary">
 		<!-- <selectKey order="BEFORE" keyProperty="tNo" resultType="int">
 	  		select nvl(max(tNo),0)+1 tNo from TodayVisit
@@ -22,6 +26,10 @@
 		<selectKey order="BEFORE" keyProperty="dNo" resultType="int">
 	  		select nvl(max(dNo),0)+1 dNo from Diary where mEmail=#{mEmail}
 	  	</selectKey>
-		insert into Diary values(#{mEmail}, #{dNo}, #{dTitle}, #{dDay}, #{dContent}, #{dWeather}, #{foodList})
+		insert into Diary values(#{mEmail}, #{dNo}, #{dTitle, jdbcType=VARCHAR}, #{dDay, jdbcType=VARCHAR}, #{dContent, jdbcType=VARCHAR}, #{dWeather, jdbcType=VARCHAR}, #{foodList, jdbcType=VARCHAR})
 	</insert>
+	
+	<delete id="deleteDiary" parameterType="int">
+		delete Diary where dNo=#{dNo}
+	</delete>
 </mapper>

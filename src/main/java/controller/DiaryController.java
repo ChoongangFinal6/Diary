@@ -78,7 +78,8 @@ public class DiaryController {
 	
 	@RequestMapping(value="insertVisit", method=RequestMethod.GET)
 	public String insertVisit(HttpServletRequest req,HttpServletResponse rep, Model model) throws IOException, ParseException{
-		int dNo = Integer.parseInt(req.getParameter("dNo"));;
+		
+		int dNo = Integer.parseInt(req.getParameter("dNo"));
 		String mEmail = req.getParameter("mEmail");
 		String pName = req.getParameter("pName");
 		String tWork = req.getParameter("tWork");
@@ -130,8 +131,10 @@ public class DiaryController {
 	public String DiaryMain(Model model){
 		return "Diary/DiaryMain";
 	}
+	
 	@RequestMapping(value="insertVisitView")
 	public String insertVisitView(int dNo, String mEmail, String pName, Model model){
+
 		model.addAttribute("dNo", dNo);
 		model.addAttribute("pName", pName);
 		model.addAttribute("mEmail", mEmail);
@@ -147,9 +150,19 @@ public class DiaryController {
 	
 	@RequestMapping(value="DiaryWrite", method=RequestMethod.GET)
 	public String DiaryWriteView(Model model){
-
 		String mEmail = "ttt@choongang.com";
+		
+		Diary diary = new Diary();
+		
+		diary.setmEmail(mEmail);
+		
+		int result = wmpService.diaryInsert(diary);
+
+		int dNo = wmpService.searchDNo(mEmail);
+		
+		model.addAttribute("result", result);
 		model.addAttribute("mEmail", mEmail);
+		model.addAttribute("dNo", dNo);
 		
 		return "Diary/DiaryWrite";
 	}
@@ -172,5 +185,20 @@ public class DiaryController {
 			return "redirect:Diary/DiaryWrite";			
 		}
 	}
-
+	@RequestMapping(value="diaryCancel")
+	public String diaryCancel(HttpServletRequest req,HttpServletResponse rep, Model model){
+		int dNo = Integer.parseInt(req.getParameter("dNo"));
+		System.out.println(dNo);
+		
+		int result = 0;
+		
+		
+		int delTV = wmpService.deleteTV(dNo);
+		System.out.println("delTv : " + delTV);
+		result = wmpService.deleteDiary(dNo);
+		System.out.println("result : " + result);
+		
+		model.addAttribute("result", result);
+		return "Diary/DiaryMain";
+	}
 }

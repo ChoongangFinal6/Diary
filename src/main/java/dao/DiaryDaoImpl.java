@@ -26,4 +26,16 @@ public class DiaryDaoImpl implements DiaryDao{
 		int diaryInsert = session.insert("DiaryInsert", diary);
 		return diaryInsert;
 	}
+	public int searchDNo(String mEmail) {
+		int searchDno = session.selectOne("searchDNo", mEmail);
+		return searchDno;
+	}
+	public int deleteTV(int dNo) {
+		int delTV = session.delete("deleteTV", dNo);
+		return delTV;
+	}
+	public int deleteDiary(int dNo) {
+		int delDiary = session.delete("deleteDiary", dNo);
+		return delDiary;
+	}
 }

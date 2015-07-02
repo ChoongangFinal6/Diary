@@ -35,6 +35,12 @@ public class WmpServiceImpl implements WmpService{
 	public List<Place> getPlaceSubCat2(String ptypeCat1) {
 		return pd.getPlaceSubCat2(ptypeCat1);
 	}
+	public int deleteTV(int dNo) {
+		return diaryDao.deleteTV(dNo);
+	}
+	public int deleteDiary(int dNo) {
+		return diaryDao.deleteDiary(dNo);
+	}
 
 	// 새 장소 등록
 	public int insertPlace(Place place) {
@@ -48,5 +54,8 @@ public class WmpServiceImpl implements WmpService{
 	public int diaryInsert(Diary diary) {
 		return diaryDao.diaryInsert(diary);
 
+	}
+	public int searchDNo(String mEmail) {
+		return diaryDao.searchDNo(mEmail);
 	}
 }
