@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 import model.Food;
 import model.Menu;
 
@@ -38,19 +39,27 @@ public class FoodController {
 	 public String menuList(Model model){
 		 List<Menu> MenuList1 = ms.menuList1();
 		 
-		 List<Menu> Menu0 = ms.menuSelectList(MenuList1.get(0).getFoodType());
+		 List<List<Menu>> dlist = new ArrayList<List<Menu>>();
+		 
+		 for(int i=0; i<MenuList1.size(); i++) {
+			 List<Menu> Menu = ms.menuSelectList(MenuList1.get(i).getFoodType());
+			 
+			 dlist.add(Menu);
+		 }
+		 
+		/* List<Menu> Menu0 = ms.menuSelectList(MenuList1.get(0).getFoodType());
 		 List<Menu> Menu1 = ms.menuSelectList(MenuList1.get(1).getFoodType());
 		 List<Menu> Menu2 = ms.menuSelectList(MenuList1.get(2).getFoodType());
 		 List<Menu> Menu3 = ms.menuSelectList(MenuList1.get(3).getFoodType());
 		 List<Menu> Menu4 = ms.menuSelectList(MenuList1.get(4).getFoodType());
 		 List<Menu> Menu5 = ms.menuSelectList(MenuList1.get(5).getFoodType());
-		 List<List<Menu>> dlist = new ArrayList<List<Menu>>();
+		 
 		 dlist.add(Menu0);
 		 dlist.add(Menu1);
 		 dlist.add(Menu2);
 		 dlist.add(Menu3);
 		 dlist.add(Menu4);
-		 dlist.add(Menu5);
+		 dlist.add(Menu5);*/
    //      System.out.println("Menu0 :"+Menu0);
    //      System.out.println("Menu1 :"+Menu1);
    //      System.out.println("MenuList1.get(1).getFoodType() :"+MenuList1.get(1).getFoodType());
@@ -63,32 +72,52 @@ public class FoodController {
 		 model.addAttribute("MenuList1",MenuList1);
 		 model.addAttribute("dlist",dlist);
 		 
-		 for (int i = 0; i < Menu1.size(); i++) {
+		 /*for (int i = 0; i < Menu1.size(); i++) {
 			System.out.println(Menu1.get(i).getFoodKind());
-		}
-		 model.addAttribute("MenuList1",MenuList1);
-		 model.addAttribute("MenuList1",MenuList1);
+		}*/
+	
 		 return "food/FoodKcalBook";
 	 }
 	 
 	 
 	 //음식메뉴 리스트
-		@RequestMapping(value="FoodList")
-		public String FoodList(int kindCode, Model model){
+		@RequestMapping(value="FoodList",method=RequestMethod.POST)
+		public String foodList(int kindCode, Model model, HttpServletResponse rep) throws IOException{
             System.out.println("음식메뉴"+kindCode);
-			List<Food> foodList = ks.Foodlist(kindCode);
-			String str ="1231312.jpg/1231231.jpg/1231232.jpg/1231.jpg";
+            
+            List<Food> foodList = ks.Foodlist(kindCode);
+           
+            String fileFath= "resources/upload/food/";
+            String foodinfo= "";
+            String foodstr = "<tr><th>음식명</th><th>이미지</th><th>칼로리</th>"
+	        	   		+ "<th>목측량(1개,1인분)</th><th>분량(g)</th></tr>";
+            
+	        for(Food ff : foodList){
+	        	foodinfo += "<tr><td>"+ ff.getFoodName() + "</td>"
+	        			+ "<td><img src='" + fileFath+ff.getFoodImage() + "' width='70px' height='50px'></td>"
+	        			+ "<td>" + ff.getKcal() + "</td>"
+	        			+ "<td>" + ff.getAmount() + "</td>"
+	        			+ "<td>" + ff.getGram() + "</td></tr>";
+	        	//foodList.get(i).setFoodImage( fileFath+foodList.get(i).getFoodImage() );
+	        }
+			String foodDetail=null;
+			foodDetail=foodstr+foodinfo;
+			/*String str ="/1231312.jpg/1231231.jpg/1231232.jpg/1231.jpg";
 			
 			String[] df 	= str.split("/");
 			System.out.println(df[0]);
 			System.out.println(df[1]);
-			System.out.println(df[2]);
+			System.out.println(df[2]);*/
 			
 			System.out.println("푸드리스트 :"+foodList);
 	        model.addAttribute("foodList",foodList);
-	        model.addAttribute("aaa","a111aa");
+	        
 			
-			return "food/FoodList";
+	        rep.setContentType("text/html; charset=utf-8"); 
+			PrintWriter out = rep.getWriter();
+			out.print(foodDetail);
+			
+		  return null;	
 		}
 	 
 	 //음식메뉴 추가

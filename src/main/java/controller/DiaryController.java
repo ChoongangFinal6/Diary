@@ -28,6 +28,8 @@ public class DiaryController {
 	@Autowired
 	private WmpService wmpService;
 	
+	
+	
 	@RequestMapping(value="searchPlace", method=RequestMethod.GET)
 	public String searchPlace(HttpServletRequest req, HttpServletResponse rep, Model model) throws IOException{
 

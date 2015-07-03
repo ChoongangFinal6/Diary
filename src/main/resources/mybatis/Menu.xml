@@ -13,7 +13,8 @@
 		select * from Menu where typeCode=#{typeCode}
 	</select> 
 	<select id="menuList1" resultMap="MenuResult">
-	  select distinct foodType from menu
+     select distinct foodType from menu  order by foodtype desc
+<!-- 	 select distinct typecode from menu order by typecode -->
 	</select>
 	<select id="menuSelectList" parameterType="String" resultMap="MenuResult">
      select foodKind,kindCode from menu where foodType = #{foodType}	

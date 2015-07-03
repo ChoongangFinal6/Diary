@@ -10,13 +10,13 @@
 </head>
 <body>
 
-<table>
+<table style="width: 450px;">
 	<tr>
 		<th>음식명</th><th>이미지</th><th>칼로리(kcal)</th><th>목측량(1개,1인분)</th><th>분량(g)</th>
 	</tr>
   <c:forEach var="food" items="${foodList}">
      <tr>
-		<td>${food.foodName}</td><td>${food.foodImage}</td>
+		<td>${food.foodName}</td><td><img alt="foodImage" src="${food.foodImage}" width="70px"height="50px"> </td>
 		<td>${food.kcal}</td><td>${food.amount}</td><td>${food.gram}</td>
 	</tr>
   </c:forEach>
