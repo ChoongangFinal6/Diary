@@ -10,7 +10,7 @@ import model.TodayVisit;
 public interface WmpService {
 	// Diary
 	public Place placeOne(String pName);
-	public List<TodayVisit> todayVisitList(int dno);
+	public List<TodayVisit> todayVisitList(TodayVisit todayVisit);
 	public Place searchPlaceOne(String pName);
 	public int visitInsert(TodayVisit todayVisit);
 	public int diaryInsert(Diary diary);

@@ -6,6 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.actBox1 {
+		width:290px;
+		border-radius: 5px; 
+		-moz-border-radius: 5px; 
+		-webkit-border-radius: 5px; 
+		border: 3px dashed #3DC5FF;	
+	}
+
+</style>
+
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=115e224cfdaefc58554b1435511ab0f4"></script>
 <script type="text/javascript" src="resources/js/jquery.js"></script>
 <style type="text/css">
@@ -145,10 +156,8 @@
 		var url = "diaryPlaceInsertForm.html"
 		if( $('#searchPlace').val()!=""){ 
 			url += "?searchPlace="+$('#searchPlace').val();
-		}
-		
-		w = 800;
-		h = 450;
+		}	
+		w = 800; 	h = 450;
 		LeftPosition = (screen.width-w)/2;
 		TopPosition = (screen.height-h)/2;
 		
@@ -157,13 +166,42 @@
 	}
 	
 	// 새 장소 등록후, 등록된 장소명 표시
-	function placeInserted(pName){
-		$('#searchPlace').attr('value', pName);
+	function placeInserted(newName){
+		console.log(newName+" 등록됨");
+		$('#searchPlace').val(newName);
 		$('#searchPlaceBtn').trigger('click');
 	}
+	
+	// 새로운 방문활동 등록후, 등록된 활동 표시
+	function activityInserted(params){
+		console.log(params); 
+		//dNo=10&mEmail=ttt@choongang.com&pName=양재역&tWork=잠&time1=12:58&time2=12:59		
+	}
+	
+	// 방문기록 전체 조회
+	function allVisit(){
+		alert("allVisit?")
+		var params =  "mEmail=${mEmail}&dNo=${dNo}";
+		$.ajax({
+			type : 'get',
+			url : 'placeAll.html',
+			dataType : 'text',
+			data : params,
+			success : function(result) {
+				$('#actBox1').html(result);
+				//$('#pTypeCat2').html(result);
+			}
+		});
+	}
+	
+	$(function(){
+		$('#visitListSector').click(function(){
+			allVisit();
+		});
+	});
 </script>
 </head>
-<body style="margin: 0;">
+<body style="margin: 0 0 0 0;">
 
 <c:if test="${result == 0 }">
 <script type="text/javascript">
@@ -171,10 +209,10 @@
 </script>
 </c:if>
 
-<div id="bgDisplay" style="position: fixed; opacity=1; background-color: black; z-index: 10; margin: -30px -30px 0 0; opacity:0.6;"></div>
+<div id="bgDisplay" style="position: fixed; opacity:1; background-color: black; z-index: 10; margin: -30px -30px 0 0; opacity:0.6;"></div>
 <h3 style="margin: 8px;">다이어리 쓰기</h3>
 <form action="DiaryWrite.html" method="post" style="margin: 8px;">
-	<div style="width: 45%">
+	<div>
 		<input type="hidden" id="pmapx" name="pmapx" value="">
 		<input type="hidden" id="pmapy" name="pmapy" value="">
 		<div>
@@ -204,19 +242,26 @@
 		<div style="">
 			<input type="button" value="식단" name="FoodList">
 		</div>
-		<div id="map" style="margin-top:50px; width: 500px; height: 360px; margin-right: 30px;">
-			<input type="text" id="searchPlace" style="position: absolute; z-index: 2; width: 120px;">
-			<input type="button" id="searchPlaceBtn" value="검색" style="position: absolute; z-index: 2; left: 123px;">
-			<input type="button" id="insertPlaceBtn" value="새로등록" onclick='addNewPlace()' style="position: absolute; z-index: 2; left: 163px;">
-		</div>
 		<div>
+			<div id="map" style="float:left; width: 500px; height: 360px;">
+				<input type="text" id="searchPlace" value="" style="position: absolute; z-index: 2; width: 120px;">
+				<input type="button" id="searchPlaceBtn" value="검색" style="position: absolute; z-index: 2; left: 123px;">
+				<input type="button" id="insertPlaceBtn" value="새로등록" onclick='addNewPlace()' style="position: absolute; z-index: 2; left: 163px;">
+			</div>
+			<div id="visitListSector" style="float:left; left:510px;height: 360px;position:absolute; background-color:pink; width:300px;">
+				<div>방문기록</div>
+				<div class="actBox1" id="actBox1">sss</div>
+			</div>
+		</div>
+		
+		<div style="clear:left;">
 	 		내용<br>
-	 		<textarea rows="10" cols="58" name="Dcontent" placeholder="내용"></textarea>
+	 		<textarea rows="10" cols="58" name="Dcontent" placeholder="내용" style="resize:none"></textarea>
 	 	</div>
 	 	
-	 	<input type="hidden" name="dNo" id="dNo" value="${dNo }">
+	 	<input type="hidden" name="dNo" id="dNo" value="${dNo}">
 	 	<input type="hidden" name="pName" id="pName" value="">
-	 	<input type="hidden" name="mEmail" id="mEmail" value="${mEmail }">
+	 	<input type="hidden" name="mEmail" id="mEmail" value="${mEmail}">
 	</div>
 	<input type="submit" value="확인" >
 	<input type="button" value="취소" id="diaryCancel">

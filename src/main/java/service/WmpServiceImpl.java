@@ -22,8 +22,8 @@ public class WmpServiceImpl implements WmpService{
 	public Place placeOne(String pName) {
 		return pd.placeOne(pName);
 	}
-	public List<TodayVisit> todayVisitList(int dno) {
-		return diaryDao.todayVisitList(dno);
+	public List<TodayVisit> todayVisitList(TodayVisit todayVisit) {
+		return diaryDao.todayVisitList(todayVisit);
 	}
 	public Place searchPlaceOne(String pName) {
 		return pd.searchPlaceOne(pName);

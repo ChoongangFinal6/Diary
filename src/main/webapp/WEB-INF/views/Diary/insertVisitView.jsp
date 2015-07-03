@@ -22,23 +22,22 @@ $(function(){
 			params += "&time1=" + $('#time1').val() + "&time2=" + $('#time2').val();
 			$.get("insertVisit.html", params, function(data) {
 				console.log(data);
-				  if(data == 1){
-					alert("입력에 성공하셨습니다.")
+				if(data == 1){
+					alert("입력에 성공하셨습니다.");
 					$(opener.document).find("#bgDisplay").css({"width":0,"height":0});
-					//self.close();
-			//		validNavigation = true;
+					$(opener.activityInserted(params));
 					self.close();
-				  }else if(data == 2){
+				}else if(data == 2){
 					$('#warning').html("<font color='red'>끝난 시간이 시작 시간보다 빠를 수 없습니다.</font>");
-					//alert("끝난 시간이 시작 시간보다 빠를 수 없습니다.")
-				  }else if(data == 3){
+			  	}else if(data == 3){
 					$('#warning').html("<font color='red'>끝난 시간이 오늘을 넘길 수 없습니다.</font>");
-				  }else{				  
+	  			}else{				  
 					alert("입력에 실패하셨습니다.")				  
-				  }
+			  	}
 			});
 		}
-	}); 
+	});
+	
 	$('#insertVisitClose').click(function(){
 		$(opener.document).find("#bgDisplay").css({"width":0,"height":0});
 		//self.close();
