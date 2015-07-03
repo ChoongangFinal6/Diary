@@ -30,6 +30,20 @@ $(function(){
 				
 		}); 
 		$.ajax({data:param});
+		var check = 'foodDetail'+$(this).attr('id').substring(0,1);
+		/* alert(check); */
+		if(check == 'foodDetail1'){
+			$('#foodDetail1').show();
+			$('#foodDetail2').hide();
+			$('#foodDetail3').hide();
+			alert("1");
+		}
+		else if(check == 'foodDetail2'){
+			$('#foodDetail1').hide();
+			$('#foodDetail2').show();
+			$('#foodDetail3').hide();
+			alert("2");
+		}
 	});
 });
 
@@ -75,7 +89,7 @@ $(function(){
 						<c:set var="j" value="0" />
 					</td>				
 				</tr>
-				<tr >
+				<tr>
 			    <td colspan="8" id="foodDetail${i}"></td>
 			    </tr>		
 				</c:forEach>
