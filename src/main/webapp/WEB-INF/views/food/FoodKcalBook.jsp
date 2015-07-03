@@ -27,7 +27,7 @@ $(function(){
 			success : function(result){
 				$('#foodDetail' + num).html(result);
 			}
-			
+				
 		}); 
 		$.ajax({data:param});
 	});
@@ -75,7 +75,7 @@ $(function(){
 						<c:set var="j" value="0" />
 					</td>				
 				</tr>
-				<tr>
+				<tr >
 			    <td colspan="8" id="foodDetail${i}"></td>
 			    </tr>		
 				</c:forEach>
