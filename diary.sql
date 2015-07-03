@@ -1,4 +1,9 @@
-﻿-- diary table
+
+delete TODAYVISIT;
+delete diary;
+
+
+-- diary table
 drop table diary;
 CREATE TABLE Diary (
 	Memail VARCHAR2(50),	-- 회원 이메일

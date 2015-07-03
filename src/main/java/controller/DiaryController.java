@@ -60,7 +60,7 @@ public class DiaryController {
 		todayVisit.setdNo(dNo);
 		List<TodayVisit> vList = wmpService.todayVisitList(todayVisit);
 		
-		String str = "{\"place\" : [";
+		String str = "{\"visited\" : [";
 		for (int i = 0; i < vList.size(); i++) {
 			str += "{\"dNo\" : \"" + vList.get(i).getdNo() + "\", ";
 			str += "\"mEmail\" : \"" + vList.get(i).getmEmail() + "\", ";
@@ -73,7 +73,7 @@ public class DiaryController {
 			}
 		}
 		str += "]}";
-		
+		System.out.println("json : "+str);
 		rep.setContentType("text/html; charset=utf-8");
 		PrintWriter out = rep.getWriter();
 		out.print(str);

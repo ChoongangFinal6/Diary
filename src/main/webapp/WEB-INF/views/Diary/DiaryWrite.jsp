@@ -7,12 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	.actBox1 {
+	.actBox {
 		width:290px;
 		border-radius: 5px; 
 		-moz-border-radius: 5px; 
 		-webkit-border-radius: 5px; 
-		border: 3px dashed #3DC5FF;	
+		border: 3px dashed #3DC5FF;
 	}
 
 </style>
@@ -184,20 +184,20 @@
 				"width="+w+",height="+h+",top="+TopPosition+",left="+LeftPosition+", scrollbars=yes,resizable=no");
 	}
 	
-	// 새 장소 등록후, 등록된 장소명 표시
+// 새 장소 등록후, 등록된 장소명 표시
 	function placeInserted(newName){
 		console.log(newName+" 등록됨");
 		$('#searchPlace').val(newName);
 		$('#searchPlaceBtn').trigger('click');
 	}
 	
-	// 새로운 방문활동 등록후, 등록된 활동 표시
+// 새로운 방문활동 등록후, 등록된 활동 표시
 	function activityInserted(params){
 		console.log(params); 
 		//dNo=10&mEmail=ttt@choongang.com&pName=양재역&tWork=잠&time1=12:58&time2=12:59		
 	}
 	
-	// 방문기록 전체 조회
+// 방문기록 전체 조회
 	function allVisit(){
 		alert("allVisit?")
 		var params =  "mEmail=${mEmail}&dNo=${dNo}";
@@ -212,10 +212,26 @@
 			}
 		});
 	}
-	
+// 방문기록 전체 조회2
 	$(function(){
-		$('#visitListSector').click(function(){
-			allVisit();
+		$('#visitListBox').click(function(){
+			var params = "mEmail=${mEmail}&dNo=${dNo}";
+			$('#visitListBox').empty();
+			$.getJSON("placeAll.html", params, function (data) {
+				$.each(data.visited, function (index, visited) {
+					var dNo = visited.dNo;                 
+					var mEmail = visited.mEmail;
+					var pName = visited.pName;
+					var tTime = visited.tTime;
+					var tWork = visited.tWork;
+					var actBoxTag = "<div class='actBox' id='actBox="+index+"'>"
+						+ pName + " / " + tTime + "<br>" + tWork 
+						+ "</div>";
+					$('#visitListBox').append(actBoxTag);
+				});
+			});
+			
+			
 		});
 	});
 </script>
@@ -280,9 +296,8 @@
 				<input type="button" id="searchPlaceBtn" value="검색" style="position: absolute; z-index: 2; left: 123px;">
 				<input type="button" id="insertPlaceBtn" value="새로등록" onclick='addNewPlace()' style="position: absolute; z-index: 2; left: 163px;">
 			</div>
-			<div id="visitListSector" style="float:left; left:510px;height: 360px;position:absolute; background-color:pink; width:300px;">
-				<div>방문기록</div>
-				<div class="actBox1" id="actBox1">sss</div>
+			<div id="visitListBox" style="float:left; left:510px;height: 360px;position:absolute; background-color:pink; width:300px;">
+
 			</div>
 		</div>
 		
