@@ -14,9 +14,9 @@ public class DiaryDaoImpl implements DiaryDao{
 	@Autowired
 	private SqlSession session;
 	
-	public List<TodayVisit> todayVisitList(int dno) {
-		List<TodayVisit> todayVisit = session.selectList("DiaryTodayOne", dno);
-		return todayVisit;
+	public List<TodayVisit> todayVisitList(TodayVisit todayVisit) {
+		List<TodayVisit> todayVisitList = session.selectList("DiaryTodayOne", todayVisit);
+		return todayVisitList;
 	}
 	public int visitInsert(TodayVisit todayVisit) {
 		int visitToday = session.insert("visitInsert", todayVisit);

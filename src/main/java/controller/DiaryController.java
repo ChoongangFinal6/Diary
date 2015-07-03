@@ -28,7 +28,8 @@ import service.WmpService;
 public class DiaryController {
 	@Autowired
 	private WmpService wmpService;
-	
+
+//	장소 검색
 	@RequestMapping(value="searchPlace", method=RequestMethod.GET)
 	public String searchPlace(HttpServletRequest req, HttpServletResponse rep, Model model) throws IOException{
 
@@ -47,36 +48,42 @@ public class DiaryController {
 		return null;
 	}
 	
+//	방문 기록 모두 조회
 	@RequestMapping(value="placeAll", method=RequestMethod.GET)
 	public String placeAllJSON(HttpServletRequest req,HttpServletResponse rep, Model model) throws IOException{
+		
+		String email = req.getParameter("mEmail");
 		int dNo = Integer.parseInt(req.getParameter("dNo"));
+		System.out.println("Ctrl : placeAllJSON - "+ email + "/" + dNo);
+		TodayVisit todayVisit = new TodayVisit();
+		todayVisit.setmEmail(email);
+		todayVisit.setdNo(dNo);
+		List<TodayVisit> vList = wmpService.todayVisitList(todayVisit);
 		
-		List<TodayVisit> todayVisit = wmpService.todayVisitList(dNo);
-		
-		/*String str = "{\"paceAll\" : [";
-		for (int i = 0; i < placelist.size(); i++) {
-			str += "{\"pcode\" : " + placelist.get(i).getpCode() + ", ";
-			str += "\"ptype\" : \"" + placelist.get(i).getpType() + "\", ";
-			str += "\"pname\" : \"" + placelist.get(i).getpName() + "\", ";
-			str += "\"pimg\" : \"" + placelist.get(i).getpImg() + "\", ";
-			str += "\"pmapx\" : \"" + placelist.get(i).getpMapX() + "\", ";
-			if(i == placelist.size()-1){
-				str += "\"pmapy\" : \"" + placelist.get(i).getpMapY() + "\"}";
+		String str = "{\"place\" : [";
+		for (int i = 0; i < vList.size(); i++) {
+			str += "{\"dNo\" : \"" + vList.get(i).getdNo() + "\", ";
+			str += "\"mEmail\" : \"" + vList.get(i).getmEmail() + "\", ";
+			str += "\"pName\" : \"" + vList.get(i).getpName() + "\", ";
+			str += "\"tTime\" : \"" + vList.get(i).gettTime() + "\", ";
+			if(i == vList.size()-1){
+				str += "\"tWork\" : \"" + vList.get(i).gettWork() + "\"}";
 			}else{
-				str += "\"pmapy\" : \"" + placelist.get(i).getpMapY() + "\"},";
+				str += "\"tWork\" : \"" + vList.get(i).gettWork() + "\"},";
 			}
 		}
 		str += "]}";
 		
 		rep.setContentType("text/html; charset=utf-8");
 		PrintWriter out = rep.getWriter();
-		out.print(str);*/
+		out.print(str);
 		
 		//model.addAttribute("obj", todayVisit);
 		//System.out.println(str);
 		return null;
 	}
 	
+//	새 방문기록 작성
 	@RequestMapping(value="insertVisit", method=RequestMethod.GET)
 	public String insertVisit(HttpServletRequest req,HttpServletResponse rep, Model model) throws IOException, ParseException{
 		
@@ -236,10 +243,10 @@ public class DiaryController {
 	@RequestMapping(value="diaryCancel")
 	public String diaryCancel(HttpServletRequest req,HttpServletResponse rep, Model model){
 		int dNo = Integer.parseInt(req.getParameter("dNo"));
-		
+	
 		int result = 0;
-		
-		wmpService.deleteTV(dNo);
+		int delTV = wmpService.deleteTV(dNo);
+		System.out.println("delTv : " + delTV);
 		result = wmpService.deleteDiary(dNo);
 		
 		model.addAttribute("result", result);
