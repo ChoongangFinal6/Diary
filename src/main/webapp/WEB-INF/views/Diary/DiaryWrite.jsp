@@ -154,6 +154,7 @@
 			location.href="diaryCancel.html?dNo="+$('#dNo').val();
 		});
 		
+		
 	});
 	
 	
@@ -182,13 +183,19 @@
 </script>
 </head>
 <body style="margin: 0;">
-
+<%-- 
 <c:if test="${result == 0 }">
 <script type="text/javascript">
 	alert("다이어리가 등록되지 않았습니다");
 </script>
 </c:if>
-
+ --%>
+<c:if test="${diaryWarning != null }">
+<script type="text/javascript">
+	alert("오늘 이미 다이어리를 작성하셨습니다\n기존의 다이어리를 수정해주세요.");
+	location.href="DiaryMain.html";
+</script>
+</c:if>
 <h3 style="margin: 8px;">다이어리 쓰기</h3>
 
 <form action="DiaryWrite.html" method="post" style="margin: 8px;">
@@ -197,7 +204,7 @@
 		<input type="hidden" id="pmapx" name="pmapx" value="">
 		<input type="hidden" id="pmapy" name="pmapy" value="">
 		<div>
-			날짜 <input type="date" name="dDay">
+			날짜 <input type="date" id="dDay" name="dDay" value="${date }" readonly="readonly">
 		</div>
 		<div>
 			<button style="border: 0px; background-color: white;">
@@ -234,7 +241,7 @@
 	 	</div>
 	 	
 	 	<input type="hidden" name="dNo" id="dNo" value="${dNo }">
-	 	<input type="hidden" name="pName" id="pName" value="">
+	 	<input type="hidden" name="pName" id="pName" value="DB01.png">
 	 	<input type="hidden" name="mEmail" id="mEmail" value="${mEmail }">
 	 	<input type="hidden" name="dWeather" id="dWeather" value="">
 	</div>

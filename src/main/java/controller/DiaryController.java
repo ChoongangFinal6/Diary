@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -100,6 +101,7 @@ public class DiaryController {
 		System.out.println(date1.after(date2));
 		if(date1.after(date2)){
 			result = 2;
+			
 			out.print(result);
 		}else if(time2.equals("00:00")){
 			result = 3;
@@ -129,6 +131,11 @@ public class DiaryController {
 	
 	@RequestMapping(value="DiaryMain")
 	public String DiaryMain(Model model){
+		String mEmail = "ttt@choongang.com";
+		List<Diary> diaryList = wmpService.myDiaryList(mEmail);
+		
+		model.addAttribute("diaryList", diaryList);
+		
 		return "Diary/DiaryMain";
 	}
 	
@@ -152,19 +159,60 @@ public class DiaryController {
 	public String DiaryWriteView(Model model){
 		String mEmail = "ttt@choongang.com";
 		
-		Diary diary = new Diary();
+		Date today = new Date();
+		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+		String date = formater.format(today);
 		
-		diary.setmEmail(mEmail);
+		Diary searchDiary = new Diary();
 		
-		int result = wmpService.diaryInsert(diary);
+		searchDiary.setmEmail(mEmail);
+		searchDiary.setdDay(date);
+		
+		
+		Diary thisDiary = wmpService.thisDiary(searchDiary);
+	
+		String view = "";
+		
+		if(thisDiary != null){
+			model.addAttribute("warningEmail", thisDiary.getmEmail());
+			
+			view = "Diary/DiaryMain";
+		}else{
+			Diary diary = new Diary();
+			
+			diary.setmEmail(mEmail);
+			diary.setdDay(date);
+			diary.setdTitle(date + " 임시 다이어리");
+			
+			wmpService.diaryInsert(diary);
+			int dNo = wmpService.searchDNo(mEmail);
+			
+			model.addAttribute("mEmail", mEmail);
+			model.addAttribute("dNo", dNo);
+			model.addAttribute("date", date);
+			
+			view = "Diary/DiaryWrite";
+		}
+		
+		/*if(thisDiary.getdNo() == null){
+			Diary diary = new Diary();
+			
+			diary.setmEmail(mEmail);
+			
+			wmpService.diaryInsert(diary);
 
-		int dNo = wmpService.searchDNo(mEmail);
+			int dNo = wmpService.searchDNo(mEmail);
+			
+			model.addAttribute("mEmail", mEmail);
+			model.addAttribute("dNo", dNo);
+			model.addAttribute("date", date);
+		}else{
+			model.addAttribute("mEmail", thisDiary.getmEmail());
+			model.addAttribute("dNo", thisDiary.getdNo());
+			model.addAttribute("date", thisDiary.getdDay());
+		}*/
 		
-		model.addAttribute("result", result);
-		model.addAttribute("mEmail", mEmail);
-		model.addAttribute("dNo", dNo);
-		
-		return "Diary/DiaryWrite";
+		return view;
 	}
 	
 	/*@RequestMapping(value="write",method=RequestMethod.POST)
@@ -188,17 +236,13 @@ public class DiaryController {
 	@RequestMapping(value="diaryCancel")
 	public String diaryCancel(HttpServletRequest req,HttpServletResponse rep, Model model){
 		int dNo = Integer.parseInt(req.getParameter("dNo"));
-		System.out.println(dNo);
 		
 		int result = 0;
 		
-		
-		int delTV = wmpService.deleteTV(dNo);
-		System.out.println("delTv : " + delTV);
+		wmpService.deleteTV(dNo);
 		result = wmpService.deleteDiary(dNo);
-		System.out.println("result : " + result);
 		
 		model.addAttribute("result", result);
-		return "Diary/DiaryMain";
+		return "Diary/DiaryDelete";
 	}
 }

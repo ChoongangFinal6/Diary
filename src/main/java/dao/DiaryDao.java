@@ -13,4 +13,6 @@ public interface DiaryDao {
 	public int deleteTV(int dNo);
 	public int deleteDiary(int dNo);
 	public int diaryUpdateWrite(Diary diary);
+	public Diary thisDiary(Diary diary);
+	public List<Diary> myDiaryList(String mEmail);
 }

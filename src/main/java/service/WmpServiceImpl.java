@@ -41,6 +41,10 @@ public class WmpServiceImpl implements WmpService{
 	public int deleteDiary(int dNo) {
 		return diaryDao.deleteDiary(dNo);
 	}
+	
+	public List<Diary> myDiaryList(String mEmail) {
+		return diaryDao.myDiaryList(mEmail);
+	}
 
 	// 새 장소 등록
 	public int insertPlace(Place place) {
@@ -58,8 +62,12 @@ public class WmpServiceImpl implements WmpService{
 	public int searchDNo(String mEmail) {
 		return diaryDao.searchDNo(mEmail);
 	}
-	
+
 	public int diaryUpdateWrite(Diary diary) {
 		return diaryDao.diaryUpdateWrite(diary);
+	}
+
+	public Diary thisDiary(Diary diary) {
+		return diaryDao.thisDiary(diary);
 	}
 }

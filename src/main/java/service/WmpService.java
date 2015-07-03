@@ -21,6 +21,10 @@ public interface WmpService {
 	// 생성된 다이어리에서 입력된 데이터로 수정하는 부분
 	public int diaryUpdateWrite(Diary diary);
 	
+	public Diary thisDiary(Diary diary);
+	
+	public List<Diary> myDiaryList(String mEmail);
+	
 	// Diary_Place
 	List<Place> getPlaceSubCat2(String ptypeCat1);
 	int insertPlace(Place pDto);

@@ -29,10 +29,10 @@ $(function(){
 			//		validNavigation = true;
 					self.close();
 				  }else if(data == 2){
-					$('#warning').html("<font color='red'>끝난 시간이 시작 시간보다 빠를 수 없습니다.</font>");
+					//$('#warning').html("<font color='red'>끝난 시간이 시작 시간보다 빠를 수 없습니다.</font>");
 					//alert("끝난 시간이 시작 시간보다 빠를 수 없습니다.")
 				  }else if(data == 3){
-					$('#warning').html("<font color='red'>끝난 시간이 오늘을 넘길 수 없습니다.</font>");
+					//$('#warning').html("<font color='red'>끝난 시간이 오늘을 넘길 수 없습니다.</font>");
 				  }else{				  
 					alert("입력에 실패하셨습니다.")				  
 				  }
@@ -54,8 +54,8 @@ $(function(){
 		<input type="hidden" id="dNo" value="${dNo }">
 		<input type="hidden" id="mEmail" value="${mEmail }">
 		<input type="text" id="tWork" placeholder="오늘 한 일" required="required"><br>
-		시간 <input type="time" id="time1" required="required">
-		<input type="time" id="time2" required="required">
+		시간 <input type="time" id="time1" required="required" min="08:00" max="11:59">
+		<input type="time" id="time2" required="required" min="12:00" max="23:59">
 		<div id="warning"></div>
 		<br>
 		<input type="button" id="insertVisit" value="확인">

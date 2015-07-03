@@ -7,12 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-<c:if test="${result == 0 }">
-<script type="text/javascript">
-	alert("다이어리가 등록되지 않았습니다");
-</script>
+<c:if test="${warningEmail != null}">
+	<script type="text/javascript">
+		alert('${warningEmail}' + "님.\n오늘의 다이어리가 이미 작성되어 있습니다.\n다이어리를 수정하거나 삭제해주세요.");
+	</script>
 </c:if>
+<body>
+	<c:forEach var="dList" items="${diaryList }">
+		${dList.dNo } / ${dList.dTitle } / ${dList.dDay }
+	</c:forEach>
 	<input type="button" value="다이어리 쓰기" onclick="location.href='DiaryWrite.html'"/>
 </body>
 </html>

@@ -42,4 +42,14 @@ public class DiaryDaoImpl implements DiaryDao{
 		int diaryUpWrite = session.update("diaryUpdateWrite", diary);
 		return diaryUpWrite;
 	}
+	public Diary thisDiary(Diary diary) {
+		Diary diarySearch = session.selectOne("thisDiary", diary);
+		return diarySearch;
+	}
+	@Override
+	public List<Diary> myDiaryList(String mEmail) {
+		System.out.println(mEmail);
+		List<Diary> myDiarylist = session.selectList("myDiaryList", mEmail);
+		return myDiarylist;
+	}
 }

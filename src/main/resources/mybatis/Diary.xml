@@ -11,12 +11,16 @@
 		<result property="dWeather" column="dWeather"/>
 		<result property="foodList" column="foodList"/>
 	</resultMap>
-	<select id="DiaryList" resultMap="DiaryResult">
-		select * from Diary
+	<select id="myDiaryList" parameterType="String" resultMap="DiaryResult">
+		select * from Diary where mEmail=#{mEmail}
 	</select>
 	
 	<select id="searchDNo" parameterType="String" resultType="int">
 		select max(dNo) dNo from Diary where mEmail=#{mEmail}
+	</select>
+	
+	<select id="thisDiary" parameterType="Diary" resultMap="DiaryResult">
+		select * from Diary where mEmail=#{mEmail} and dDay=#{dDay}
 	</select>
 	
 	<insert id="DiaryInsert" parameterType="Diary">
