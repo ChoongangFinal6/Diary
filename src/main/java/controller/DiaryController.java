@@ -28,14 +28,8 @@ import service.WmpService;
 public class DiaryController {
 	@Autowired
 	private WmpService wmpService;
-<<<<<<< HEAD
 
 //	장소 검색
-=======
-	
-	
-	
->>>>>>> YDH
 	@RequestMapping(value="searchPlace", method=RequestMethod.GET)
 	public String searchPlace(HttpServletRequest req, HttpServletResponse rep, Model model) throws IOException{
 
