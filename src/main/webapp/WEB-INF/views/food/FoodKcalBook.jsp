@@ -10,16 +10,11 @@
 <script type="text/javascript" src="resources/js/jquery.js"></script>
 <script type="text/javascript">
 
-//$('.menuKind').each(function(index){
 $(function(){
-	$('span').click(function(){
+	$('span.menuKind').click(function(){
 		var param = "kindCode="+$(this).attr('id');
 		alert(param);
-		var num = $(this).attr('id').substring(0,1);
-		
-		/* var foodDetail = $("#foodDetail").attr("id");
-		alert(foodDetail); */
-		
+		var num = $(this).attr('id').substring(0,1);		
 		$.ajaxSetup({
 			type: 'POST',
 			url: 'FoodList.html',
@@ -31,19 +26,21 @@ $(function(){
 		}); 
 		$.ajax({data:param});
 		var check = 'foodDetail'+$(this).attr('id').substring(0,1);
-		/* alert(check); */
-		if(check == 'foodDetail1'){
-			$('#foodDetail1').show();
-			$('#foodDetail2').hide();
-			$('#foodDetail3').hide();
-			alert("1");
-		}
-		else if(check == 'foodDetail2'){
-			$('#foodDetail1').hide();
-			$('#foodDetail2').show();
-			$('#foodDetail3').hide();
-			alert("2");
-		}
+		for(var i = 1; i <= 6; i++){
+			$('#foodDetail'+i).hide(); 
+			if(check=='foodDetail'+i){
+				$('#foodDetail'+i).show();
+				/* alert(i);
+				alert('#foodType'+i);
+				alert($('#foodType'+i).val()); */
+				/* alert($('span.menuKind').attr('id')); */
+				alert($(this).attr('id'));
+				var jd = $(this).attr('id');
+				$('#categoryName').html($('#foodType'+i).text()).append(' > ').append($('#'+jd).text());
+				
+			}
+	    }
+		
 	});
 });
 
@@ -54,7 +51,7 @@ $(function(){
  	<div style="width: 800px;">
 		<div style="width: 800px;">
 			<div style="font-size: 20px; width: 400px; float: left;">칼로리북</div>
-			<div style="width: 400px; float: right;">카테고리:</div>
+			<div style="width: 400px; float: right;"><span>카테고리:&nbsp;&nbsp;</span><span id="categoryName"></span></div>
 		</div>
 
 		<div>
@@ -65,8 +62,9 @@ $(function(){
 			
 				<tr>
 					<td  width="100px" valign="top">
-						  ${MenuList1.get(i).foodType}
-						<c:set var="i" value="${i+1 }" />
+					<div id="foodType${i+1}">${MenuList1.get(i).foodType}</div>	
+						<input type='hidden' name='foodtype' value='${MenuList1.get(i).foodType}'>
+						<c:set var="i" value="${i+1}" />
 					</td>
 					
 				 	<td>
@@ -94,10 +92,7 @@ $(function(){
 			    </tr>		
 				</c:forEach>
 			</table>
-		</div>
-		
-		
-		
+		</div>		
 	</div>
 
 

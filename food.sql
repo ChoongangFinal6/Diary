@@ -19,9 +19,9 @@ insert into food values(2,10,11,'콩나물국밥','a.jpg',500,'2',500);
 insert into food values(3,10,11,'뼈해장국','a.jpg',500,'2',500);
 insert into food values(4,10,11,'돼지국밥','a.jpg',500,'2',500);
 
+delete from food where foodName='참치마요도시락';
 
-
-insert into food values(1,10,12,'참치마요도시락','a.jpg',500,'2',500);
+insert into food values(1,10,13,'참치마요도시락','a.jpg',500,'2',500);
 insert into food values(2,10,13,'국화도시락','a.jpg',500,'2',500);
 insert into food values(3,10,13,'마당쇠도시락','a.jpg',500,'2',500);
 insert into food values(4,10,13,'도련님도시락','a.jpg',500,'2',500);
