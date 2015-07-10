@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,8 +27,48 @@ import service.WmpService;
 public class DiaryController {
 	@Autowired
 	private WmpService wmpService;
+	
+	// 공백 명령으로 접근
+	@RequestMapping()
+	public String homePage(Model model){
+		System.out.println("Ctrl: homePage");
+		model.addAttribute("viewPage", "template/diary_home.jsp");
+		return "diaryMain";
+	}
 
-//	장소 검색
+	// 다이어리 작성
+	@RequestMapping(value = "DiaryWrite", method = RequestMethod.POST)
+	public String DiaryWrite(Diary diary, Model model) {
+		int result = wmpService.diaryUpdateWrite(diary);
+		if (result > 0) {
+			model.addAttribute("result", result);
+			return "Diary/DiaryMain";
+		//	model.addAttribute("viewPage", "template/diary_home.jsp");
+		} else {
+			model.addAttribute("result", result);
+			return "redirect:Diary/DiaryWrite";
+		//	model.addAttribute("viewPage", "template/diary_home.jsp");
+		}
+//		return "diaryMain";
+	}
+
+	// 다이어리 삭제
+	@RequestMapping(value = "diaryCancel")
+	public String diaryCancel(HttpServletRequest req, HttpServletResponse rep,
+			Model model) {
+		System.out.println("Ctrl: diaryDelete ");
+		int dNo = Integer.parseInt(req.getParameter("dNo"));
+
+		int result = 0;
+		int delTV = wmpService.deleteTV(dNo);
+		System.out.println("delTv : " + delTV);
+		result = wmpService.deleteDiary(dNo);
+
+		model.addAttribute("result", result);
+		return "Diary/DiaryMain";
+	}
+	
+	//	장소 검색
 	@RequestMapping(value="searchPlace", method=RequestMethod.GET)
 	public String searchPlace(HttpServletRequest req, HttpServletResponse rep, Model model) throws IOException{
 
@@ -48,7 +87,7 @@ public class DiaryController {
 		return null;
 	}
 	
-//	방문 기록 모두 조회
+//	방문 기록 모두 조회 (AJAX)
 	@RequestMapping(value="placeAll", method=RequestMethod.GET)
 	public String placeAllJSON(HttpServletRequest req,HttpServletResponse rep, Model model) throws IOException{
 		
@@ -136,16 +175,28 @@ public class DiaryController {
 		return null;
 	}
 	
+//	새 방문기록 작성 과정 - 시간 계산 (AJAX)
+	@RequestMapping(value="visitTimeCalc")
+	public String visitTimeCalc(){
+		
+		return null;
+	}
+	
 	@RequestMapping(value="DiaryMain")
 	public String DiaryMain(Model model){
+		System.out.println("Ctrl : DiaryMain");
 		String mEmail = "ttt@choongang.com";
 		List<Diary> diaryList = wmpService.myDiaryList(mEmail);
 		
 		model.addAttribute("diaryList", diaryList);
 		
-		return "Diary/DiaryMain";
+		model.addAttribute("viewPage", "Diary/DiaryMain");
+		
+		/*return "Diary/DiaryMain";*/
+		return "/index";
 	}
 	
+// 새 방문기록 작성 폼 요청	
 	@RequestMapping(value="insertVisitView")
 	public String insertVisitView(int dNo, String mEmail, String pName, Model model){
 
@@ -155,7 +206,31 @@ public class DiaryController {
 		
 		return "Diary/insertVisitView";
 	}
+
+// 방문기록 수정 폼 요청
+	@RequestMapping(value="modifyVisitView")
+	public String modifyVisitView(int dNo, String mEmail, String pName, Model model){
+		
+		model.addAttribute("dNo", dNo);
+		model.addAttribute("pName", pName);
+		model.addAttribute("mEmail", mEmail);
+		
+		return "Diary/modifyVisitView";
+	}
 	
+// 방문기록 삭제 (AJAX)
+	@RequestMapping(value="deleteVisit")
+	public String deleteVisit(int dNo, String mEmail, String pName, Model model, HttpServletResponse rep) throws IOException{
+		TodayVisit todayVisit = new TodayVisit();
+		todayVisit.setdNo(dNo);
+		todayVisit.setmEmail(mEmail);
+		todayVisit.setpName(pName);
+		int result = wmpService.deleteVisit(todayVisit);
+		System.out.println("삭제결과 : "+result);
+		PrintWriter out = rep.getWriter();
+		out.print(result);
+		return null;
+	}
 	@RequestMapping(value="DiaryDetail")
 	public String DiaryDetail(){
 		
@@ -221,35 +296,6 @@ public class DiaryController {
 		
 		return view;
 	}
+
 	
-	/*@RequestMapping(value="write",method=RequestMethod.POST)
-	public String write(Board board, Model model) {
-		int result = bs.insert(board);
-		if (result > 0) {	return "redirect:list.do";
-		} else {	return "writeForm";	}
-	}*/
-	
-	@RequestMapping(value="DiaryWrite", method=RequestMethod.POST)
-	public String DiaryWrite(Diary diary, Model model){
-		int result = wmpService.diaryUpdateWrite(diary);
-		if(result > 0){
-			model.addAttribute("result", result);
-			return "Diary/DiaryMain";
-		}else{
-			model.addAttribute("result", result);
-			return "redirect:Diary/DiaryWrite";			
-		}
-	}
-	@RequestMapping(value="diaryCancel")
-	public String diaryCancel(HttpServletRequest req,HttpServletResponse rep, Model model){
-		int dNo = Integer.parseInt(req.getParameter("dNo"));
-	
-		int result = 0;
-		int delTV = wmpService.deleteTV(dNo);
-		System.out.println("delTv : " + delTV);
-		result = wmpService.deleteDiary(dNo);
-		
-		model.addAttribute("result", result);
-		return "Diary/DiaryDelete";
-	}
 }

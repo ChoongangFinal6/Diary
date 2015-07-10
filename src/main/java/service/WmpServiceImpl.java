@@ -31,10 +31,7 @@ public class WmpServiceImpl implements WmpService{
 	public int visitInsert(TodayVisit todayVisit) {
 		return diaryDao.visitInsert(todayVisit);
 	}
-	// 장소 분류코드 조회
-	public List<Place> getPlaceSubCat2(String ptypeCat1) {
-		return pd.getPlaceSubCat2(ptypeCat1);
-	}
+
 	public int deleteTV(int dNo) {
 		return diaryDao.deleteTV(dNo);
 	}
@@ -44,15 +41,6 @@ public class WmpServiceImpl implements WmpService{
 	
 	public List<Diary> myDiaryList(String mEmail) {
 		return diaryDao.myDiaryList(mEmail);
-	}
-
-	// 새 장소 등록
-	public int insertPlace(Place place) {
-		return pd.placeInsert(place);
-	}
-	// 등록되어 있는 장소명인지 조회
-	public int isRegistedPlace(String pName) {
-		return pd.isRegistedPlace(pName);
 	}
 	
 	public int diaryInsert(Diary diary) {
@@ -69,5 +57,33 @@ public class WmpServiceImpl implements WmpService{
 
 	public Diary thisDiary(Diary diary) {
 		return diaryDao.thisDiary(diary);
+	}
+
+	// 방문기록 삭제
+	public int deleteVisit(TodayVisit todayVisit) {
+		return diaryDao.deleteVisit(todayVisit);
+	}
+	
+	///////////////////// Place /////////////////////
+	// 등록된 지명 목록 조회
+	public List<Place> listPlace(int pageNum) {
+		return pd.listPlace(pageNum);
+	}
+	// 새 장소 등록
+	public int insertPlace(Place place) {
+		return pd.placeInsert(place);
+	}
+	// 등록되어 있는 장소명인지 조회
+	public int isRegistedPlace(String pName) {
+		return pd.isRegistedPlace(pName);
+	}
+	// 장소 분류코드 조회
+	public List<Place> getPlaceSubCat2(String ptypeCat1) {
+		return pd.getPlaceSubCat2(ptypeCat1);
+	}
+	
+	// 등록 된 장소 총 갯수
+	public int cntAllPlace() {
+		return pd.cntAllPlace();
 	}
 }

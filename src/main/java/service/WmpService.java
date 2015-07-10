@@ -29,4 +29,7 @@ public interface WmpService {
 	List<Place> getPlaceSubCat2(String ptypeCat1);
 	int insertPlace(Place pDto);
 	public int isRegistedPlace(String pName);
+	public List<Place> listPlace(int pageNum);
+	public int deleteVisit(TodayVisit todayVisit);
+	public int cntAllPlace();
 }

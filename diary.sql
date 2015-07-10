@@ -59,15 +59,29 @@ CREATE TABLE place (
 
 SELECT * FROM place;
 delete place;
-
-SELECT * FROM place;
 DROP TABLE place;
+SELECT pName, pType, pImg, pMapY, pMapX
+		FROM ( SELECT rownum rn, a.* FROM (SELECT * FROM place order by pName) a ) 
+		WHERE rn>=1 AND rn<=10
 
 INSERT INTO place values ('서울역삼초등학교', '0403', 'image1.jpg', 37.49725576460605, 127.03098542194168);
 INSERT INTO place values ('중앙정보처리학원', '0409', 'image2.jpg', 37.49696807978383, 127.02845219806613);
 INSERT INTO place values ('양재역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
-
-SELECT COUNT(*) FROM place WHERE pName='양재역'
+INSERT INTO place values ('강남역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('논현역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('교대역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('역삼역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('삼성역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('선릉역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('잠실역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('신천역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('반포역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('신사역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('옥수역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('한티역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('신촌역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('군자역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
+INSERT INTO place values ('매봉역', '0101', 'image3.jpg', 37.48474876494686, 127.03464361459156);
 
 
 -------------------------- 카테고리 ----------------------------------------

@@ -22,5 +22,8 @@
 	<delete id="deleteTV" parameterType="int">
 		delete TodayVisit where dNo=#{dNo}
 	</delete>
-
+<!-- 방문기록 삭제2 -->
+	<delete id="deleteVisit" parameterType="TodayVisit">
+		delete TodayVisit where dNo=#{dNo} AND mEmail=#{mEmail} AND pName=#{pName}
+	</delete>
 </mapper>

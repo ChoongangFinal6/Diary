@@ -11,4 +11,6 @@ public interface PlaceDao {
 	public List<Place> getPlaceSubCat2(String ptypeCat1);
 	public int placeInsert(Place place);
 	public int isRegistedPlace(String pName);
+	public List<Place> listPlace(int pageNum);
+	public int cntAllPlace();
 }

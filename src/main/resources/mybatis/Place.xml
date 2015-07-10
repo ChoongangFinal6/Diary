@@ -12,11 +12,21 @@
 		<result property="pCat2Name" column="pCat2Name"/>		
 	</resultMap>
 
+<!-- 장소검색 -->
 	<select id="searchPlace" parameterType="String" resultMap="PlaceResult">
-		select * from Place where pName=#{pName}
+		SELECT * FROM Place WHERE pName=#{pName}
 	</select>
-
-	<!-- 세부 분류코드 -->    
+		
+<!-- 장소 목록 조회 -->
+	<select id="listPlace" parameterType="int" resultMap="PlaceResult">
+		<![CDATA[
+		SELECT pName, pType, pImg, pMapY, pMapX
+		FROM ( SELECT rownum rn, a.* FROM (SELECT * FROM place order by pName) a ) 
+		WHERE rn>=(#{endNum}-10+1) AND rn<=#{endNum}
+		]]>
+	</select>
+	
+<!-- 세부 분류코드 -->    
     <select id="getSubCat2" parameterType="String" resultMap="PlaceResult">
         SELECT pCat2Code, pCat2Name FROM place_Category WHERE pCat1Code=#{pCat1Code}
     </select> 
@@ -28,5 +38,9 @@
 <!-- 등록되어있는 장소명인가 조회 -->
 	<select id="isRegistedPlace" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM place WHERE pName=#{pName}
+	</select>
+<!-- 총 등록갯수 -->
+	<select id="cntAllPlace" resultType="int">
+		SELECT COUNT(*) FROM place
 	</select>
 </mapper>

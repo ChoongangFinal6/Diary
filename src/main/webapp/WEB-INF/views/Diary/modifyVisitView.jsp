@@ -25,7 +25,7 @@ $(function(){
 				  if(data == 1){
 					alert("입력에 성공하셨습니다.")
 					$(opener.document).find("#bgDisplay").css({"width":0,"height":0});
-					opener.listVisit();
+					//self.close();
 			//		validNavigation = true;
 					self.close();
 				  }else if(data == 2){
@@ -40,53 +40,23 @@ $(function(){
 		}
 	}); 
 	$('#insertVisitClose').click(function(){
-		$(opener.document).find("#bgDisplay").css({"width":0,"height":0}); // 등록후 배경영역 축소
-		//	validNavigation = true;
+		$(opener.document).find("#bgDisplay").css({"width":0,"height":0});
+		//self.close();
+	//	validNavigation = true;
 		self.close();
 	});
-	
-	// 창 닫을때 이벤트 발생
-	window.onbeforeunload = windowClosing;
-	function windowClosing() {
-		$(opener.document).find("#bgDisplay").css({"width":0,"height":0});
-		alert("alert은 크롬에서는 발생하지 않음.");
-		//return "return 입니다. confirm 에서 보입니다.";
-	}
-
-	// 시간 무결성 검사
-	var timeValid = 0;
-/* 	$('.time').change(function(){
-		var time1 = new Data($('#time1').val());
-		var time2 = new Data($('#time2').val());
-	//	alert(time1 + "\n" + time2);
-		
-	});
- */	
 });
-
-	function chk(){
-		
-//	 	var time1 = ${date}; 
-//	 	$('#time1').val();
-//	 	alert(time1);
-	}
 </script>
 </head>
 <body>
-	<h1>오늘 내가 한 일</h1>
-		<input type="hidden" id="pName" value="">
-		<input type="hidden" id="dNo" value="${dNo}">
-		<input type="hidden" id="mEmail" value="${mEmail}">
+	<h1>오늘 내가 한 일 - 수정</h1>
+		<input type="hidden" id="pName" value="${pName }">
+		<input type="hidden" id="dNo" value="${dNo }">
+		<input type="hidden" id="mEmail" value="${mEmail }">
 		<input type="text" id="tWork" placeholder="오늘 한 일" required="required"><br>
-		<div>
-			<!-- 시간 <input type="time" id="time1" required="required" min="08:00" max="11:59">
-			<input type="time" id="time2" required="required" min="12:00" max="23:59">
-	 -->	
-	 		시작시각 <input type="datetime-local" value="${date}" class="time" id="time1" required="required"><br>
-			종료시각 <input type="datetime-local" class="time" id="time2" required="required">
-			<button onClick="chk()">chk</button>
-		</div>
- 		<div id="warning"></div>
+		시간 <input type="time" id="time1" required="required" min="08:00" max="11:59">
+		<input type="time" id="time2" required="required" min="12:00" max="23:59">
+		<div id="warning"></div>
 		<br>
 		<input type="button" id="insertVisit" value="확인">
 		<input type="button" id="insertVisitClose" value="취소">

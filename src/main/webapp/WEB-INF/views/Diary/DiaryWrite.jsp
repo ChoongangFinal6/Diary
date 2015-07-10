@@ -1,21 +1,12 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ include file="../template.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	.actBox {
-		width:290px;
-		border-radius: 5px; 
-		-moz-border-radius: 5px; 
-		-webkit-border-radius: 5px; 
-		border: 3px dashed #3DC5FF;
-	}
-
-</style>
 
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=115e224cfdaefc58554b1435511ab0f4"></script>
 <script type="text/javascript" src="resources/js/jquery.js"></script>
@@ -97,13 +88,13 @@
 					
 					var visitVal = "?dNo="+$('#dNo').val()+"&mEmail=" + $('#mEmail').val() + "&pName=" + $('#pName').val();
 					
+					// 방문기록 작성 버튼 클릭시 작성폼 팝업창 오픈
 					$('#insertVisitBtn').click(function(){
 						var wid = 500;
 						var hei = 370;
 						var LeftPosition=(fullWidth-wid)/2;
 						var TopPosition=(fullHeight-hei)/2-200;
-						
-						$('#bgDisplay').css({"width":fullWidth,"height":fullHeight});
+						$('#bgDisplay').css({"width":fullWidth,"height":fullHeight,"top":0});
 						window.open("insertVisitView.html"+visitVal, "search",
 							"width="+wid+",height="+hei+",scrollbars=no,resizeable=no,menubar=no,z-lock=yes,left="+LeftPosition+",top="+TopPosition, "");
 					});
@@ -168,36 +159,7 @@
 		
 	});
 	
-	
-	// 새 장소 등록창 팝업
-	function addNewPlace(){
-		window.name = "pareWin";
-		var url = "diaryPlaceInsertForm.html"
-		if( $('#searchPlace').val()!=""){ 
-			url += "?searchPlace="+$('#searchPlace').val();
-		}	
-		w = 800; 	h = 450;
-		LeftPosition = (screen.width-w)/2;
-		TopPosition = (screen.height-h)/2;
-		
-		window.open( url, "NewPlace",
-				"width="+w+",height="+h+",top="+TopPosition+",left="+LeftPosition+", scrollbars=yes,resizable=no");
-	}
-	
-// 새 장소 등록후, 등록된 장소명 표시
-	function placeInserted(newName){
-		console.log(newName+" 등록됨");
-		$('#searchPlace').val(newName);
-		$('#searchPlaceBtn').trigger('click');
-	}
-	
-// 새로운 방문활동 등록후, 등록된 활동 표시
-	function activityInserted(params){
-		console.log(params); 
-		//dNo=10&mEmail=ttt@choongang.com&pName=양재역&tWork=잠&time1=12:58&time2=12:59		
-	}
-	
-// 방문기록 전체 조회
+
 	function allVisit(){
 		alert("allVisit?")
 		var params =  "mEmail=${mEmail}&dNo=${dNo}";
@@ -212,28 +174,100 @@
 			}
 		});
 	}
-// 방문기록 전체 조회2
+	
+	
+
+
+//******************************** place ********************************
+	// place 조회창 팝업
+	function listPlace(){
+		window.name = "pareWin";
+		var url = "listPlace.html?pageNum=1"
+		w = 300; 	h = 600;
+		LeftPosition = screen.width / 2 + w;
+		TopPosition = (screen.height-h)/2;
+		
+		window.open( url, "PlaceList",
+				"width="+w+",height="+h+",top="+TopPosition+",left="+LeftPosition+", resizable=no");
+	}
+
+	// 새 place 등록창 팝업
+	function addNewPlace(){
+		window.name = "pareWin";
+		var url = "diaryPlaceInsertForm.html"
+		if( $('#searchPlace').val()!=""){ 
+			url += "?searchPlace="+$('#searchPlace').val();
+		}	
+		w = 800; 	h = 450;
+		LeftPosition = (screen.width-w)/2;
+		TopPosition = (screen.height-h)/2;
+		
+		window.open( url, "NewPlace",
+				"width="+w+",height="+h+",top="+TopPosition+",left="+LeftPosition+", scrollbars=yes,resizable=no");
+	}
+	
+	// 새 place 등록후, 등록된 장소명 표시
+	function placeInserted(newName){
+		console.log(newName+" 등록됨");
+		$('#searchPlace').val(newName);
+		$('#searchPlaceBtn').trigger('click');
+	}
+// ******************************** Visit ********************************
 	$(function(){
 		$('#visitListBox').click(function(){
-			var params = "mEmail=${mEmail}&dNo=${dNo}";
-			$('#visitListBox').empty();
-			$.getJSON("placeAll.html", params, function (data) {
-				$.each(data.visited, function (index, visited) {
-					var dNo = visited.dNo;                 
-					var mEmail = visited.mEmail;
-					var pName = visited.pName;
-					var tTime = visited.tTime;
-					var tWork = visited.tWork;
-					var actBoxTag = "<div class='actBox' id='actBox="+index+"'>"
-						+ pName + " / " + tTime + "<br>" + tWork 
-						+ "</div>";
-					$('#visitListBox').append(actBoxTag);
-				});
-			});
-			
-			
+			listVisit();
 		});
 	});
+	// visit 전체 조회
+	function listVisit(){
+		var params = "mEmail=${mEmail}&dNo=${dNo}";
+		$('#visitListBox').empty();
+		$.getJSON("placeAll.html", params, function (data) {
+			$.each(data.visited, function (index, visited) {
+				var dNo = visited.dNo;                 
+				var mEmail = visited.mEmail;
+				var pName = visited.pName;
+				var tTime = visited.tTime;
+				var tWork = visited.tWork;
+				var actBoxTag = "<div class='actBox' id='actBox"+index+"'>"
+					+ pName + "&nbsp;" + tTime + "<br>" + tWork
+					+ "<a onclick=\"modifyVisit(" +dNo+ ",\'"+mEmail+"\',\'"+pName+"\')\"> 수정 </a>" 
+					+ "<a onclick=\"deleteVisit(" +dNo+ ",\'"+mEmail+"\',\'"+pName+"\')\"> 삭제 </a>"
+					+ "</div>";
+				$('#visitListBox').append(actBoxTag);
+			});
+		});
+	}
+	
+	//	visit 수정
+ 	function modifyVisit(dNo, mEmail, pName){
+		var visitVal = "?dNo="+dNo+"&mEmail="+mEmail+"&pName="+pName;
+		var w = 500;
+		var h = 370;
+		var LeftPosition = screen.width / 2;
+		var TopPosition = screen.width / 2 - 200;
+		
+		$('#bgDisplay').css({"width":fullWidth,"height":fullHeight});
+		window.open("modifyVisitView.html"+visitVal, "search",
+			"width="+w+",height="+h+",menubar=no,z-lock=yes,left="+LeftPosition+",top="+TopPosition, "");
+	}
+ 
+	//	visit 삭제
+	function deleteVisit(dNo, mEmail, pName){
+	 	if( confirm("이 방문 기록을 삭제하시겠습니까?") ){
+			var visitVal = "dNo="+dNo+"&mEmail="+mEmail+"&pName="+pName;
+			$.ajax({
+				type : 'get',
+				url : 'deleteVisit.html',
+				dataType : 'text',
+				data : visitVal,
+				success : function(result) {
+					alert('삭제되었습니다.');
+					listVisit();
+				}
+			}); 
+		}
+	}
 </script>
 </head>
 
@@ -293,10 +327,11 @@
 		<div>
 			<div id="map" style="float:left; width: 500px; height: 360px;">
 				<input type="text" id="searchPlace" value="" style="position: absolute; z-index: 2; width: 120px;">
-				<input type="button" id="searchPlaceBtn" value="검색" style="position: absolute; z-index: 2; left: 123px;">
-				<input type="button" id="insertPlaceBtn" value="새로등록" onclick='addNewPlace()' style="position: absolute; z-index: 2; left: 163px;">
+				<input type="button" id="searchPlaceBtn" value="검색" style="position: absolute; z-index: 2; left: 120px;">
+				<input type="button" id="insertPlaceBtn" value="등록" onclick='addNewPlace()' style="position: absolute; z-index: 2; left: 160px;">
+				<input type="button" id="listPlaceBtn" value="목록에서 선택" onclick='listPlace()' style="position: absolute; z-index: 2; left: 200px;">
 			</div>
-			<div id="visitListBox" style="float:left; left:510px;height: 360px;position:absolute; background-color:pink; width:300px;">
+			<div id="visitListBox" style="float:left; left:510px;height: 360px;position:absolute;width:300px;">
 
 			</div>
 		</div>

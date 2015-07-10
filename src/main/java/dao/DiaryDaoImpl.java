@@ -52,4 +52,10 @@ public class DiaryDaoImpl implements DiaryDao{
 		List<Diary> myDiarylist = session.selectList("myDiaryList", mEmail);
 		return myDiarylist;
 	}
+	
+	// 방문기록 삭제
+	public int deleteVisit(TodayVisit todayVisit) {
+		System.out.println("	Dao_deleteVisit : "+todayVisit.getpName());
+		return session.delete("TodayVisit.deleteVisit", todayVisit);
+	}
 }

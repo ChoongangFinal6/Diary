@@ -27,6 +27,8 @@ public class PlaceController {
 	@Autowired
 	WmpService ws;
 	
+
+	
 	// 새 장소 등록 요청
 	@RequestMapping(value="diaryPlaceInsertForm")
 	public String placeInsertForm(HttpServletRequest req,HttpServletResponse rep, Model model){
@@ -108,5 +110,30 @@ public class PlaceController {
 		PrintWriter out = rep.getWriter();
 		out.print(result);
 		return null;
+	}
+	
+	// 등록되어 있는 장소 목록 조회
+	@RequestMapping(value="listPlace")
+	public String listPlace(HttpServletRequest req, Model model){
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		System.out.println("Ctrl: listPlace - page "+ pageNum);
+		int pageSize = 10;
+		List<Place> pList = ws.listPlace(pageNum*pageSize);
+		
+		int total = ws.cntAllPlace();
+		int blockSize = 5;
+		
+		int pageCnt = (int)Math.ceil((double)total/pageSize);
+		int startPage = (int)(pageNum-1)/blockSize*blockSize + 1;
+		int endPage = startPage + blockSize -1;	
+		if (endPage > pageCnt) endPage = pageCnt;	
+		
+		model.addAttribute("pList", pList);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("blockSize", blockSize);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("pageCnt", pageCnt);
+		return "Diary/place/place_list";
 	}
 }
